@@ -20,7 +20,7 @@ const Login = () => {
   const [email, setUeremail] = useState("");
   const [password, setUerpassword] = useState("");
   const handleLogin = async () => {
-    let result = await fetch(config.apibaseurl + "/api/user/weblogin", {
+    let result = await fetch(config.apiurl + "/api/users/weblogin", {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: {
