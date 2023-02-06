@@ -3,23 +3,24 @@ import Header from "../../headerbar/Header";
 import config from "../../../config.json";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./category.scss";
+// import "./category.scss";
 import axios from "axios";
-const Category = () => {
+const Staff = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
-  const [categories, setCategories] = useState([]);
+  const [stafflist, setStaffList] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    getCategory();
+    getStaffDetails();
   }, []);
 
-  const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category/getcategory");
+  const getStaffDetails = async () => {
+    let catresult = await fetch(config.apiurl + "/api/staff/getstaff");
     catresult = await catresult.json();
-    setCategories(catresult.data.results);
+    setStaffList(catresult.data.results);
   };
 
   const [name, setName] = useState("");
+  const [staffid, setStaffId] = useState("");
   const [updateid, setUpdateid] = useState("");
   const [error, setError] = useState(false);
 
@@ -31,16 +32,16 @@ const Category = () => {
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "/api/category/" + updateid;
+      apicaturl = config.apiurl + "/api/staff/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "/api/category/";
+      apicaturl = config.apiurl + "/api/staff/create";
       methodapi = "post";
     }
 
     let addcat = await fetch(apicaturl, {
       method: methodapi,
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name, staffid }),
       headers: {
         "Content-Type": "application/json",
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -49,27 +50,25 @@ const Category = () => {
 
     let addcatrs = await addcat.json();
     if (addcatrs.status == "true") {
-      getCategory();
+      getStaffDetails();
     }
   };
 
   const getCategoryedit = async (editid) => {
-    let cateditdetails = await fetch(
-      config.apiurl + "/api/category/" + editid,
-      {
-        method: "get",
-        headers: {
-          Authorization: "bearer " + accesstoken.data.access_token,
-        },
-      }
-    );
+    let cateditdetails = await fetch(config.apiurl + "/api/staff/" + editid, {
+      method: "get",
+      headers: {
+        Authorization: "bearer " + accesstoken.data.access_token,
+      },
+    });
     cateditdetails = await cateditdetails.json();
     setName(cateditdetails.data[0].name);
+    setStaffId(cateditdetails.data[0].staffid);
     setUpdateid(cateditdetails.data[0]._id);
   };
 
-  const deleteCategory = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/category/" + id, {
+  const deleteStaff = async (id) => {
+    let deletecat = await fetch(config.apiurl + "/api/staff/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -77,7 +76,7 @@ const Category = () => {
     });
     deletecat = await deletecat.json();
     if (deletecat) {
-      getCategory();
+      getStaffDetails();
     }
   };
   return (
@@ -93,7 +92,7 @@ const Category = () => {
                 <div class="card-header pb-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Category</h6>
+                      <h6 class="mb-0">Staff</h6>
                     </div>
                   </div>
                 </div>
@@ -104,14 +103,24 @@ const Category = () => {
                       <thead>
                         <tr>
                           <th class="text-secondary opacity-7 ps-2">S.No</th>
+                          <th class="text-secondary opacity-7 ps-2">
+                            # Staff ID
+                          </th>
                           <th class="text-secondary opacity-7 ps-2">Name</th>
                           <th class="text-secondary opacity-7">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {categories.map((item, index) => (
+                        {stafflist.map((item, index) => (
                           <tr key={item._id}>
                             <td>{index + 1}</td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                  <h6 class="mb-0 text-sm">{item.staffid}</h6>
+                                </div>
+                              </div>
+                            </td>
                             <td>
                               <div class="d-flex px-2 py-1">
                                 <div class="d-flex flex-column justify-content-center">
@@ -133,7 +142,7 @@ const Category = () => {
                                 </a>
                                 <a
                                   class="btn btn-link text-danger text-gradient px-3 mb-0"
-                                  onClick={() => deleteCategory(item._id)}
+                                  onClick={() => deleteStaff(item._id)}
                                 >
                                   <i
                                     class="far fa-trash-alt me-2"
@@ -156,7 +165,7 @@ const Category = () => {
                 <div class="card-header pb-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Add/Edit Category</h6>
+                      <h6 class="mb-0">Add/Edit Staff</h6>
                     </div>
                   </div>
                 </div>
@@ -174,7 +183,7 @@ const Category = () => {
                         <input
                           class="form-control"
                           type="text"
-                          placeholder="Enter Category name"
+                          placeholder="Enter Staff name"
                           required
                           value={name}
                           onChange={(e) => {
@@ -183,7 +192,34 @@ const Category = () => {
                         />
                         {error && !name && (
                           <span class="text-danger text-gradient text-xs text-secondary">
-                            Enter the Category Name
+                            Enter the Staff Name
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label
+                          for="example-text-input"
+                          class="form-control-label"
+                        >
+                          Staff Id
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Enter Staff Id"
+                          required
+                          value={staffid}
+                          onChange={(e) => {
+                            setStaffId(e.target.value);
+                          }}
+                        />
+                        {error && !staffid && (
+                          <span class="text-danger text-gradient text-xs text-secondary">
+                            Enter the Staff ID
                           </span>
                         )}
                       </div>
@@ -210,4 +246,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Staff;

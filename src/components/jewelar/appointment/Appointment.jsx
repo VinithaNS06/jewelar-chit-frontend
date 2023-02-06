@@ -18,6 +18,7 @@ const Appointment = () => {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setAppointmentsInfo(res.data.data);
       })
       .catch((err) => {
@@ -37,13 +38,23 @@ const Appointment = () => {
 
         <div class="container-fluid py-4">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card mb-4">
                 <div class="card-header pb-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
                       <h6 class="mb-0">Appointment</h6>
                     </div>
+                  </div>
+                  <div class="col-12 text-end">
+                    {/* <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
+                    <a
+                      class="btn bg-gradient-dark mb-0"
+                      href="/appointment/add"
+                    >
+                      <i class="fas fa-plus" aria-hidden="true"></i>
+                      &nbsp;&nbsp;Add New Appointment
+                    </a>
                   </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -57,7 +68,9 @@ const Appointment = () => {
                           <th class="text-secondary opacity-7 ps-2">
                             Date&Time
                           </th>
-                          <th class="text-secondary opacity-7 ps-2">Status</th>
+                          <th class="text-secondary opacity-7 ps-2">
+                            Products
+                          </th>
                           <th class="text-secondary opacity-7 ps-2">Action</th>
                         </tr>
                       </thead>
@@ -69,15 +82,15 @@ const Appointment = () => {
                               <div class="d-flex px-2 py-1">
                                 <div class="d-flex flex-column justify-content-center">
                                   <h6 class="mb-1 text-sm ">
-                                    {item.user_id.name}
+                                    {item.user_name}
                                   </h6>
                                   <p class="text-xs mb-2">
-                                    Email: {item.user_id.email}
+                                    Email: {item.user_email}
                                   </p>
                                   <p class="text-xs mb-2">
                                     Mobile:
                                     <span class="text-secondary">
-                                      {item.user_id.phone}
+                                      {item.user_Phone}
                                     </span>
                                   </p>
                                 </div>
@@ -88,12 +101,9 @@ const Appointment = () => {
                                 <div class="d-flex flex-column justify-content-center">
                                   <p class="text-xs mb-2">
                                     <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.date}
-                                    </span>
-                                  </p>
-                                  <p class="text-xs mb-2">
-                                    <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.time}
+                                      {item.user_date}
+                                      {"  "}
+                                      {item.user_Time}
                                     </span>
                                   </p>
                                 </div>
@@ -105,7 +115,7 @@ const Appointment = () => {
                                 <div class="d-flex flex-column justify-content-center">
                                   <p class="text-xs mb-2">
                                     <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.schedule_status}
+                                      {item.user_products}
                                     </span>
                                   </p>
                                 </div>
@@ -115,10 +125,10 @@ const Appointment = () => {
                               <div class="ms-auto">
                                 <a
                                   href={"/appointment/view/" + item._id}
-                                  class="btn btn-link text-dark px-3 mb-0"
+                                  class="btn btn-link text-success px-3 mb-0"
                                 >
                                   <i
-                                    class="fa fa-eye-alt text-dark me-2"
+                                    class="fa fa-eye text-success me-2"
                                     aria-hidden="true"
                                   ></i>
                                   View

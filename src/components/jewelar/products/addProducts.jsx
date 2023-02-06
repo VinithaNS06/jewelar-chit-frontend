@@ -1,6 +1,8 @@
 import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
 import config from "../../../config.json";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./products.scss";
 
 import { useState, useEffect } from "react";
@@ -11,32 +13,9 @@ import axios from "axios";
 const AddProducts = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [categories, setCategories] = useState([]);
-  function productsAdd() {
-    const newProduct = {
-      category_id,
-      title,
-      skuid,
-      product,
-      remark,
-      carrot,
-      wastage,
-      making,
-      price,
-    };
-    // console.log(newCategory);
-    fetch(config.apiurl + "/api/products/", {
-      method: "POST",
-      body: JSON.stringify(newProduct),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + accesstoken.data.access_token,
-      },
-    });
-  }
   const navigate = useNavigate();
   useEffect(() => {
     getCategory();
-    productsAdd();
   }, []);
 
   const [category_id, setCategory] = useState("");
@@ -56,7 +35,7 @@ const AddProducts = () => {
   const [error, setError] = useState(false);
 
   const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category");
+    let catresult = await fetch(config.apiurl + "/api/category/getcategory");
     catresult = await catresult.json();
     setCategories(catresult.data.results);
   };
@@ -96,7 +75,7 @@ const AddProducts = () => {
     };
 
     const ondataSuccess = (response) => {
-      navigate("/product");
+      navigate("/products");
     };
     const ondataFailure = (err) => console.log(err);
     const editdata = {
@@ -117,7 +96,9 @@ const AddProducts = () => {
   };
 
   const handleProsubmit = async () => {
+    console.log("sdfsfsd");
     if (!category_id || !title || !carrot || !wastage || !making || !price) {
+      console.log("asd");
       setError(true);
       return false;
     }
@@ -138,7 +119,6 @@ const AddProducts = () => {
     const onFailure = (err) => console.log(err);
     axios.post(imageupurl, formData, configimg).then(onSuccess, onFailure);
   };
-
   return (
     <>
       <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -388,7 +368,7 @@ const AddProducts = () => {
                   <div class="row">
                     <div class="text-end">
                       <button
-                        type="button"
+                        type="submit"
                         onClick={handleProsubmit}
                         class="btn btn-primary btn-sm ms-auto mt-5"
                       >
@@ -405,5 +385,4 @@ const AddProducts = () => {
     </>
   );
 };
-
 export default AddProducts;

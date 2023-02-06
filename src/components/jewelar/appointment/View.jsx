@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "../../components/headerbar/Header";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import config from "../../config.json";
+import Header from "../../../components/headerbar/Header";
+import { useParams, useNavigate } from "react-router-dom";
+import config from "../../../config.json";
 import axios from "axios";
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebar from "../../../components/sidebar/Sidebar";
 
 const ViewAppointment = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
@@ -33,7 +33,7 @@ const ViewAppointment = () => {
     updateStatus();
   }, []);
   const getStaffData = async () => {
-    let staffList = await fetch(config.apibaseurl + "/api/staff/getstaff", {
+    let staffList = await fetch(config.apiurl + "/api/staff/getstaff", {
       method: "get",
     });
     staffList = await staffList.json();
@@ -57,12 +57,12 @@ const ViewAppointment = () => {
         staffValue: staffValue,
       }),
     };
-    fetch(config.apibaseurl + "/api/schedule/" + appointmentId, headers);
+    fetch(config.apiurl + "/api/schedule/appt/" + appointmentId, headers);
   };
 
   const getAppointmentsView = async () => {
     let appointmentdetails = await fetch(
-      config.apibaseurl + "/api/schedule/byid/" + params.viewid,
+      config.apiurl + "/api/schedule/appt/" + params._id,
       {
         method: "get",
         headers: {
@@ -72,21 +72,34 @@ const ViewAppointment = () => {
     );
     appointmentdetails = await appointmentdetails.json();
     setAppointmentId(appointmentdetails.data[0]._id);
-    setusername(appointmentdetails.data[0].user_id.name);
-    setPhoneNumber(appointmentdetails.data[0].user_id.phone);
-    setEmail(appointmentdetails.data[0].user_id.email);
-    setStreetName(appointmentdetails.data[0].user_id.streetname);
+    setusername(appointmentdetails.data[0].user_name);
+    setPhoneNumber(appointmentdetails.data[0].user_Phone);
+    setEmail(appointmentdetails.data[0].user_email);
+    setStreetName(appointmentdetails.data[0].user_streetname);
     setStatus(appointmentdetails.data[0].schedule_status);
     setDate(appointmentdetails.data[0].date);
     setTime(appointmentdetails.data[0].time);
-    getProductvalue(appointmentdetails.data[0].products);
+    // getProductvalue(appointmentdetails.data.products);
   };
 
-  function getProductvalue(appt) {
-    const apptvalue = JSON.parse(appt);
-    setProducts(apptvalue);
-  }
-
+  // function getProductvalue(appt) {
+  //   const apptvalue = JSON.parse(appt);
+  //   setProducts(apptvalue);
+  // }
+  const getProducts = async () => {
+    let productdetails = await fetch(
+      config.apiurl + "/api/schedule/appt/" + params.viewid,
+      {
+        method: "get",
+        headers: {
+          Authorization: "bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
+    productdetails = await productdetails.json();
+    console.log(productdetails.data);
+    setProducts(productdetails.data);
+  };
   return (
     <>
       <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -104,9 +117,8 @@ const ViewAppointment = () => {
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
-                  <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                  {/* <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
                     <div class="">
                       <div class="card-body p-3">
                         <div class="row">
@@ -138,7 +150,7 @@ const ViewAppointment = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
                     <div class="">
@@ -292,22 +304,11 @@ const ViewAppointment = () => {
                       </button>
                     </div>
                   </div>
-                  {/* <div class="row">
-                    <div class="text-end">
-                      <Link
-                        to="/appointment"
-                        type="button"
-                        class="btn btn-primary btn-sm ms-auto mt-5"
-                      >
-                        Back
-                      </Link>
-                    </div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* </div> */}
       </main>
     </>
   );

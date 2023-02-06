@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./sidebar.scss";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const Sidebar = () => {
   return (
@@ -39,6 +40,7 @@ const Sidebar = () => {
               </div>
             </Link>
           </li>
+
           <li class="nav-item">
             <Link class="nav-link m-0" to="/category">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -91,9 +93,33 @@ const Sidebar = () => {
           <li class="nav-item">
             <Link class="nav-link m-0" to="/staff">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-single-02 text-warning text-sm opacity-10"></i>
+                <i class="fa fa-user text-warning text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1">Staff</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link m-0" to="/scheme">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-product-hunt text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Scheme</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link m-0" to="/userscheme">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-money text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">User Scheme</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link m-0" to="/rate">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-star text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Rate</span>
             </Link>
           </li>
         </ul>

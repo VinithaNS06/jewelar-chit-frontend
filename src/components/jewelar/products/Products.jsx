@@ -78,7 +78,10 @@ const Products = () => {
                               <div class="d-flex px-2 py-1">
                                 <div>
                                   <img
-                                    src={config.apiurl + item.image}
+                                    src={
+                                      config.apiurl + item.image ||
+                                      "/img/error.png"
+                                    }
                                     class="avatar avatar-sm me-3"
                                     alt={item.title}
                                   />

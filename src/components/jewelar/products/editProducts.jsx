@@ -42,7 +42,7 @@ const Productedit = () => {
 
   const getProductedit = async () => {
     let proeditdetails = await fetch(
-      config.apiurl + "/api/products/" + params._id,
+      config.apiurl + "/api/products/" + params.id,
       {
         method: "get",
         headers: {
@@ -51,7 +51,7 @@ const Productedit = () => {
       }
     );
     proeditdetails = await proeditdetails.json();
-    setCategory(proeditdetails.data[0].category_id);
+    setCategory(proeditdetails.data.category_id);
     setTitle(proeditdetails.data[0].title);
     setSkuid(proeditdetails.data[0].skuid);
     setProduct(proeditdetails.data[0].product);
@@ -93,7 +93,7 @@ const Productedit = () => {
   };
 
   const submitProductDetails = async (res) => {
-    const editupdateurl = config.apiurl + "/api/products/" + params._id;
+    const editupdateurl = config.apiurl + "/api/products/" + params.id;
     const configdata = {
       headers: {
         "Content-Type": "application/json",

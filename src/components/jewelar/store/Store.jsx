@@ -1,61 +1,67 @@
-import Sidebar from "../../sidebar/Sidebar";
-import Header from "../../headerbar/Header";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import Header from "../../../components/headerbar/Header";
+import "./store.scss";
 import config from "../../../config.json";
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./category.scss";
-import axios from "axios";
-const Category = () => {
+
+const Store = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
-  const [categories, setCategories] = useState([]);
+  const [stores, setStores] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    getCategory();
+    getStore();
   }, []);
 
-  const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category/getcategory");
-    catresult = await catresult.json();
-    setCategories(catresult.data.results);
+  const getStore = async () => {
+    let storeresult = await fetch(config.apiurl + "/api/branch");
+    storeresult = await storeresult.json();
+    setStores(storeresult.data.results);
   };
 
-  const [name, setName] = useState("");
+  const [name, setLocation] = useState("");
+  const [location, setAddress] = useState("");
+  const [remark, setRemark] = useState("");
+  const [count, setCount] = useState(1);
   const [updateid, setUpdateid] = useState("");
   const [error, setError] = useState(false);
 
   const handleCatsubmit = async () => {
-    if (!name) {
+    if (!location || !name) {
       setError(true);
       return false;
     }
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "/api/category/" + updateid;
+      apicaturl = config.apiurl + "/api/branch/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "/api/category/";
+      apicaturl = config.apiurl + "/api/branch/create";
       methodapi = "post";
     }
 
-    let addcat = await fetch(apicaturl, {
+    let addstore = await fetch(apicaturl, {
       method: methodapi,
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name, location, remark, count }),
       headers: {
         "Content-Type": "application/json",
         Authorization: "bearer " + accesstoken.data.access_token,
       },
     });
 
-    let addcatrs = await addcat.json();
-    if (addcatrs.status == "true") {
-      getCategory();
+    addstore = await addstore.json();
+    if (addstore.status == "true") {
+      getStore();
+      setLocation("");
+      setAddress("");
     }
   };
 
-  const getCategoryedit = async (editid) => {
-    let cateditdetails = await fetch(
-      config.apiurl + "/api/category/" + editid,
+  const getStoreedit = async (editid) => {
+    let storeeditdetails = await fetch(
+      config.apiurl + "/api/branch/" + editid,
       {
         method: "get",
         headers: {
@@ -63,23 +69,27 @@ const Category = () => {
         },
       }
     );
-    cateditdetails = await cateditdetails.json();
-    setName(cateditdetails.data[0].name);
-    setUpdateid(cateditdetails.data[0]._id);
+    storeeditdetails = await storeeditdetails.json();
+    setLocation(storeeditdetails.data[0].name);
+    setAddress(storeeditdetails.data[0].location);
+    setUpdateid(storeeditdetails.data[0]._id);
   };
 
-  const deleteCategory = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/category/" + id, {
+  const deleteStore = async (id) => {
+    let deletest = await fetch(config.apiurl + "/api/branch/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
       },
     });
-    deletecat = await deletecat.json();
-    if (deletecat) {
-      getCategory();
+    deletest = await deletest.json();
+    if (deletest) {
+      getStore();
+      setLocation("");
+      setAddress("");
     }
   };
+
   return (
     <>
       <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -93,8 +103,13 @@ const Category = () => {
                 <div class="card-header pb-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Category</h6>
+                      <h6 class="mb-0">Store</h6>
                     </div>
+
+                    {/* <div class="col-6 text-end">
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp;
+                                    <a href="/category/add" class="btn btn-outline-primary btn-sm mb-0 ">Add New</a>
+                                </div> */}
                   </div>
                 </div>
 
@@ -104,18 +119,21 @@ const Category = () => {
                       <thead>
                         <tr>
                           <th class="text-secondary opacity-7 ps-2">S.No</th>
-                          <th class="text-secondary opacity-7 ps-2">Name</th>
+                          <th class="text-secondary opacity-7 ps-2">Details</th>
                           <th class="text-secondary opacity-7">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {categories.map((item, index) => (
+                        {stores.map((item, index) => (
                           <tr key={item._id}>
                             <td>{index + 1}</td>
                             <td>
                               <div class="d-flex px-2 py-1">
                                 <div class="d-flex flex-column justify-content-center">
                                   <h6 class="mb-0 text-sm">{item.name}</h6>
+                                  <p class="text-xs mb-2">
+                                    Location: {item.location}
+                                  </p>
                                 </div>
                               </div>
                             </td>
@@ -123,7 +141,7 @@ const Category = () => {
                               <div class="ms-auto">
                                 <a
                                   class="btn btn-link text-dark px-3 mb-0"
-                                  onClick={() => getCategoryedit(item._id)}
+                                  onClick={() => getStoreedit(item._id)}
                                 >
                                   <i
                                     class="fas fa-pencil-alt text-dark me-2"
@@ -133,7 +151,7 @@ const Category = () => {
                                 </a>
                                 <a
                                   class="btn btn-link text-danger text-gradient px-3 mb-0"
-                                  onClick={() => deleteCategory(item._id)}
+                                  onClick={() => deleteStore(item._id)}
                                 >
                                   <i
                                     class="far fa-trash-alt me-2"
@@ -156,7 +174,7 @@ const Category = () => {
                 <div class="card-header pb-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Add/Edit Category</h6>
+                      <h6 class="mb-0">Add/Edit Store</h6>
                     </div>
                   </div>
                 </div>
@@ -169,21 +187,46 @@ const Category = () => {
                           for="example-text-input"
                           class="form-control-label"
                         >
-                          Name
+                          Location
                         </label>
                         <input
                           class="form-control"
                           type="text"
-                          placeholder="Enter Category name"
+                          placeholder="Enter name"
                           required
                           value={name}
                           onChange={(e) => {
-                            setName(e.target.value);
+                            setLocation(e.target.value);
                           }}
                         />
                         {error && !name && (
                           <span class="text-danger text-gradient text-xs text-secondary">
-                            Enter the Category Name
+                            Enter the Name
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label
+                          for="example-text-input"
+                          class="form-control-label"
+                        >
+                          Address
+                        </label>
+                        <textarea
+                          class="form-control"
+                          rows="5"
+                          value={location}
+                          onChange={(e) => {
+                            setAddress(e.target.value);
+                          }}
+                        ></textarea>
+                        {error && !location && (
+                          <span class="text-danger text-gradient text-xs text-secondary">
+                            Enter the Address
                           </span>
                         )}
                       </div>
@@ -210,4 +253,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Store;
