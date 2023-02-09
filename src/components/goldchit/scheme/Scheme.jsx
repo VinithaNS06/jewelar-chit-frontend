@@ -14,14 +14,14 @@ const Scheme = () => {
   }, []);
 
   const getSchemes = async () => {
-    let schresult = await fetch(config.apiurl + "/api/schemes/getscheme");
+    let schresult = await fetch(config.apiurl + "api/schemes/getscheme");
     schresult = await schresult.json();
     setSchemes(schresult.data);
     console.log(schresult.data);
   };
 
   const deleteSchemes = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/schemes/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/schemes/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

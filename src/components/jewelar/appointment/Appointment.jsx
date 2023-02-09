@@ -12,7 +12,7 @@ const Appointment = () => {
 
   const getAppointmentsData = async () => {
     axios
-      .get(config.apiurl + "/api/schedule/getappt", {
+      .get(config.apiurl + "api/schedule/getappt", {
         headers: {
           Authorization: "Bearer " + accesstoken.data.access_token,
         },
@@ -115,7 +115,7 @@ const Appointment = () => {
                                 <div class="d-flex flex-column justify-content-center">
                                   <p class="text-xs mb-2">
                                     <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.user_products}
+                                      {item.user_Products}
                                     </span>
                                   </p>
                                 </div>

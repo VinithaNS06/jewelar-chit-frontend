@@ -23,7 +23,7 @@ const AddCustomer = () => {
       phone,
       address,
     };
-    fetch(config.apiurl + "/api/customers/create", {
+    fetch(config.apiurl + "api/customers/create", {
       method: "POST",
       body: JSON.stringify(newCustomer),
       headers: {

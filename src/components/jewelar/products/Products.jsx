@@ -14,13 +14,13 @@ const Products = () => {
   }, []);
 
   const getProducts = async () => {
-    let prodresult = await fetch(config.apiurl + "/api/products/getproduct");
+    let prodresult = await fetch(config.apiurl + "api/products/getproduct");
     prodresult = await prodresult.json();
     setProducts(prodresult.data.results);
   };
 
   const deleteProduct = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/products/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/products/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

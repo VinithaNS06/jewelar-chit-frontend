@@ -16,7 +16,7 @@ const ViewOrder = () => {
   const getOrders = async () => {
     console.log(params);
     let orderresults = await fetch(
-      config.apiurl + "/api/orders/" + params.viewid
+      config.apiurl + "api/orders/" + params.viewid
     );
     orderresults = await orderresults.json();
     console.log(orderresults.data[0]);

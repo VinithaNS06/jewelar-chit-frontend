@@ -14,7 +14,7 @@ const Category = () => {
   }, []);
 
   const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category/getcategory");
+    let catresult = await fetch(config.apiurl + "api/category/getcategory");
     catresult = await catresult.json();
     setCategories(catresult.data.results);
   };
@@ -31,10 +31,10 @@ const Category = () => {
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "/api/category/" + updateid;
+      apicaturl = config.apiurl + "api/category/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "/api/category/";
+      apicaturl = config.apiurl + "api/category/";
       methodapi = "post";
     }
 
@@ -54,22 +54,19 @@ const Category = () => {
   };
 
   const getCategoryedit = async (editid) => {
-    let cateditdetails = await fetch(
-      config.apiurl + "/api/category/" + editid,
-      {
-        method: "get",
-        headers: {
-          Authorization: "bearer " + accesstoken.data.access_token,
-        },
-      }
-    );
+    let cateditdetails = await fetch(config.apiurl + "api/category/" + editid, {
+      method: "get",
+      headers: {
+        Authorization: "bearer " + accesstoken.data.access_token,
+      },
+    });
     cateditdetails = await cateditdetails.json();
     setName(cateditdetails.data[0].name);
     setUpdateid(cateditdetails.data[0]._id);
   };
 
   const deleteCategory = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/category/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/category/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Order = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [orders, setOrders] = useState([]);
+  // console.log(orders);
   const [custdata, setCustdata] = useState([]);
 
   const navigate = useNavigate();
@@ -17,13 +18,13 @@ const Order = () => {
   }, []);
 
   const getOrders = async () => {
-    let orderresult = await fetch(config.apiurl + "/api/orders/");
+    let orderresult = await fetch(config.apiurl + "api/orders/");
     orderresult = await orderresult.json();
     setOrders(orderresult.data);
     console.log(orderresult.data);
   };
   const deleteOrder = async (id) => {
-    let deleteordr = await fetch(config.apiurl + "/api/orders/" + id, {
+    let deleteordr = await fetch(config.apiurl + "api/orders/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -82,96 +83,90 @@ const Order = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {orders.map((item, index) => (
-                          <tr key={item.customer_id}>
-                            <td>{index + 1}</td>
+                        {orders &&
+                          orders.length &&
+                          orders.map((item, index) => (
+                            <tr key={item._id}>
+                              <td>{index + 1}</td>
 
-                            <td>
-                              {/* Phone:{" "}
+                              <td>
+                                {/* Phone:{" "}
                                 {item.user_phone} */}
-                              <p class="text-xs mb-2">
-                                Name: {item.customer_name}
                                 <p class="text-xs mb-2">
-                                  Address: {item.customer_address}
+                                  Name: {item.customer_name}
+                                  <p class="text-xs mb-2">
+                                    Address: {item.customer_address}
+                                  </p>
+                                  <p class="text-xs mb-2">
+                                    Mobile: {item.customer_Phone}
+                                  </p>
                                 </p>
-                                <p class="text-xs mb-2">
-                                  Mobile: {item.customer_Phone}
-                                </p>
-                              </p>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <p class="text-xs mb-2">
-                                    ProductName: {item.customer_product_title}
-                                  </p>
-                                  <p class="text-xs mb-2">
-                                    Product {item.customer_product_product}
-                                  </p>
-                                  <p class="text-xs mb-2">
-                                    Price: {item.customer_product_price}
-                                  </p>
-                                </div>
-                                {/* <td>
-                                  <div class="d-flex px-2 py-1">
-                                    <div class="d-flex flex-column justify-content-center">
-                                      <h6 class="mb-1 text-sm ">
-                                        {item.user_total_amount}
-                                      </h6>
-                                    </div>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <p class="text-xs mb-2">
+                                      ProductName: {item.customer_product_title}
+                                    </p>
+                                    <p class="text-xs mb-2">
+                                      Product {item.customer_product_product}
+                                    </p>
+                                    <p class="text-xs mb-2">
+                                      Price: {item.customer_product_price}
+                                    </p>
                                   </div>
-                                </td> */}
-                                <td>
-                                  <div class="d-flex px-2 py-1">
-                                    <div>
-                                      <img
-                                        src={
-                                          config.baseurl +
-                                          item.user_product_image
-                                        }
-                                        class="avatar avatar-sm me-3"
-                                        alt={item.title}
-                                      />
-                                    </div>
-                                  </div>
-                                </td>
-                              </div>
-                            </td>
 
-                            <td>
-                              <a
-                                href={"/orders/edit/" + item._id}
-                                class="btn btn-link text-dark px-3 mb-0"
-                              >
-                                <i
-                                  class="fas fa-pencil-alt text-dark me-2"
-                                  aria-hidden="true"
-                                ></i>
-                                Edit
-                              </a>
-                              <a
-                                href={"/orders/view/" + item._id}
-                                class="btn btn-link text-success px-3 mb-0"
-                              >
-                                <i
-                                  class="fa fa-eye text-success me-2"
-                                  aria-hidden="true"
-                                ></i>
-                                View
-                              </a>
-                              <a
-                                class="btn btn-link text-danger text-gradient px-3 mb-0"
-                                onClick={() => deleteOrder(item._id)}
-                              >
-                                <i
-                                  class="far fa-trash-alt me-2"
-                                  aria-hidden="true"
-                                ></i>
-                                Delete
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
+                                  <td>
+                                    <div class="d-flex px-2 py-1">
+                                      <div>
+                                        <img
+                                          src={
+                                            config.baseurl +
+                                            item.customer_product_image
+                                          }
+                                          class="avatar avatar-sm me-3"
+                                          alt={item.title}
+                                        />
+                                      </div>
+                                    </div>
+                                  </td>
+                                </div>
+                              </td>
+
+                              <td>
+                                <a
+                                  href={"/orders/edit/" + item._id}
+                                  class="btn btn-link text-dark px-3 mb-0"
+                                >
+                                  <i
+                                    class="fas fa-pencil-alt text-dark me-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  Edit
+                                </a>
+                                <a
+                                  href={"/orders/view/" + item._id}
+                                  class="btn btn-link text-success px-3 mb-0"
+                                >
+                                  <i
+                                    class="fa fa-eye text-success me-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  View
+                                </a>
+                                <a
+                                  class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                  onClick={() => deleteOrder(item._id)}
+                                >
+                                  <i
+                                    class="far fa-trash-alt me-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  Delete
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>

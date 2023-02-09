@@ -25,7 +25,7 @@ const AddOrder = () => {
     };
 
     console.log(newOrder);
-    fetch(config.apiurl + "/api/orders/", {
+    fetch(config.apiurl + "api/orders/", {
       method: "POST",
       body: JSON.stringify(newOrder),
       headers: {
@@ -47,7 +47,7 @@ const AddOrder = () => {
 
   useEffect(() => {
     axios
-      .get(config.apiurl + "/api/customers/getCustomer")
+      .get(config.apiurl + "api/customers/getCustomer")
       .then((res) => {
         console.log(res.data.data.results);
         setCustomersid(res.data.data.results);
@@ -58,7 +58,7 @@ const AddOrder = () => {
   }, []);
   useEffect(() => {
     axios
-      .get(config.apiurl + "/api/orders/")
+      .get(config.apiurl + "api/orders/")
       .then((res) => {
         console.log(res.data.data);
         setProductId(res.data.data);
@@ -126,10 +126,7 @@ const AddOrder = () => {
                           <option>Choose Customer Name</option>
                           {customersId &&
                             customersId.map((usr) => (
-                              <option
-                                value={usr.customer_id}
-                                key={usr.customer_id}
-                              >
+                              <option value={usr._id} key={usr._id}>
                                 {usr.name}-{usr.phone}
                               </option>
                             ))}
@@ -158,7 +155,7 @@ const AddOrder = () => {
                           <option>Choose Product</option>
                           {productId &&
                             productId.map((prodt) => (
-                              <option value={prodt.customer_product_id}>
+                              <option value={prodt.product_id}>
                                 {prodt.customer_product_title}
                               </option>
                             ))}

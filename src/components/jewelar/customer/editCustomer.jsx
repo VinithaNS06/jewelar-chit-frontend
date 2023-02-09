@@ -34,7 +34,7 @@ const CustomerEdit = () => {
         address: address,
       }),
     };
-    fetch(config.apiurl + `/api/customers/${params.editid}`, headers)
+    fetch(config.apiurl + `api/customers/${params.editid}`, headers)
       .then(() => toast("Customer Updated Sucessfully"))
       .then(() =>
         setTimeout(() => {
@@ -45,7 +45,7 @@ const CustomerEdit = () => {
 
   const getCustomerView = async () => {
     let CustomerDetails = await fetch(
-      config.apiurl + `/api/customers/${params.editid}`,
+      config.apiurl + `api/customers/${params.editid}`,
       {
         method: "get",
         headers: {

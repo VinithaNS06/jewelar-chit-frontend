@@ -22,7 +22,7 @@ const Rate = () => {
   };
   const getRateData = async () => {
     axios
-      .get(config.apiurl + "/api/rates/getrate", {
+      .get(config.apiurl + "api/rates/getrate", {
         headers: {
           Authorization: "Bearer " + accesstoken.data.access_token,
         },
@@ -40,7 +40,7 @@ const Rate = () => {
       rate_id,
     };
     console.log(newRate);
-    fetch(config.apiurl + "/api/ratehistory/", {
+    fetch(config.apiurl + "api/ratehistory/", {
       method: "POST",
       body: JSON.stringify(newRate),
       headers: {

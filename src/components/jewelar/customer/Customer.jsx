@@ -15,12 +15,12 @@ const Customer = () => {
   }, []);
 
   const getCustomers = async () => {
-    let prodresult = await fetch(config.apiurl + "/api/customers/getCustomer");
+    let prodresult = await fetch(config.apiurl + "api/customers/getCustomer");
     prodresult = await prodresult.json();
     setCustomers(prodresult.data.results);
   };
   const viewCustomer = async (id) => {
-    let viewcust = await fetch(config.apiurl + "/api/customers/" + id, {
+    let viewcust = await fetch(config.apiurl + "api/customers/" + id, {
       method: "get",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -33,7 +33,7 @@ const Customer = () => {
   };
 
   const deleteCustomer = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/customers/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/customers/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

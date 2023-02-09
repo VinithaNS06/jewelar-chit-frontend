@@ -16,7 +16,7 @@ const ViewScheme = () => {
   const getOrders = async () => {
     console.log(params);
     let orderresults = await fetch(
-      config.apiurl + "/api/schemes/" + params.viewid
+      config.apiurl + "api/schemes/" + params.viewid
     );
 
     orderresults = await orderresults.json();
@@ -25,7 +25,7 @@ const ViewScheme = () => {
   };
   const getUser = async () => {
     let schemedetails = await fetch(
-      config.apiurl + "/api/userscheme/users/" + params.viewid,
+      config.apiurl + "api/userscheme/users/" + params.viewid,
       {
         method: "get",
         headers: {

@@ -14,16 +14,14 @@ const UserScheme = () => {
   }, []);
 
   const getSchemes = async () => {
-    let schresult = await fetch(
-      config.apiurl + "/api/userscheme/getuserscheme"
-    );
+    let schresult = await fetch(config.apiurl + "api/userscheme/getuserscheme");
     schresult = await schresult.json();
     setUserSchemes(schresult.data);
     console.log(schresult.data);
   };
 
   const deleteSchemes = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/userscheme/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/userscheme/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -50,8 +48,8 @@ const UserScheme = () => {
                       <h6 class="mb-0">User Schemes</h6>
                     </div>
 
-                    <div class="col-6 text-end">
-                      {/* <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
+                    {/* <div class="col-6 text-end">
+                       <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; 
                       <a
                         class="btn bg-gradient-dark mb-0"
                         href="/userscheme/add"
@@ -59,7 +57,7 @@ const UserScheme = () => {
                         <i class="fas fa-plus" aria-hidden="true"></i>
                         &nbsp;&nbsp;Add New UserScheme
                       </a>
-                    </div>
+                    </div>  */}
                   </div>
                 </div>
 
@@ -71,7 +69,7 @@ const UserScheme = () => {
                           <th class="text-secondary opacity-7 ps-2">S.No</th>
                           <th class="text-secondary opacity-7 ps-2">Name</th>
                           {/* <th class="text-secondary opacity-7 ps-2">Phone</th>
-                          <th class="text-secondary opacity-7 ps-2">Address</th> */}
+                           */}
                           <th class="text-secondary opacity-7 ps-2">
                             Scheme Name
                           </th>
@@ -87,14 +85,22 @@ const UserScheme = () => {
                             Installment
                           </th>
                           <th class="text-secondary opacity-7 ps-2">Amount</th>
+                          <th class="text-secondary opacity-7 ps-2">
+                            Transaction
+                          </th>
+                          <th class="text-secondary opacity-7 ps-2">
+                            Payment Status
+                          </th>
                           <th class="text-secondary opacity-7">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {userschemes.map((item, index) => (
-                          <tr key={item._id}>
-                            <td>{index + 1}</td>
-                            {/* <td>
+                        {userschemes &&
+                          userschemes.length &&
+                          userschemes.map((item, index) => (
+                            <tr key={item._id}>
+                              <td>{index + 1}</td>
+                              {/* <td>
                               <div class="d-flex px-2 py-1">
                                 <div>
                                   <img
@@ -108,108 +114,108 @@ const UserScheme = () => {
                                 </div>
                               </div>
                             </td> */}
-                            <td>
-                              {/* Phone:{" "}
+                              <td>
+                                {/* Phone:{" "}
                                 {item.user_phone} */}
-                              <p class="text-xs mb-2">
-                                Name: {item.user_id.name} &nbsp; &nbsp; Address:{" "}
-                                {item.user_id.addresstype} &nbsp;
-                              </p>
-                              {/* <p class="text-xs mb-2">
+                                <p class="text-xs mb-2">
+                                  Name: {item.customer_name} &nbsp; &nbsp;
+                                  Address: {item.customer_address} &nbsp;
+                                </p>
+                                {/* <p class="text-xs mb-2">
                                 Remarks:{" "}
                                 <span class="text-secondary">
                                   {item.remark}
                                 </span>{" "}
                               </p> */}
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.scheme_name}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_scheme_name}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.scheme_code}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_scheme_code}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.duration}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_scheme_duration}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.installment}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_scheme_installment}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.amount}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_scheme_amount}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            {/* <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.grams}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_transaction_id}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td> */}
-                            {/* <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">
-                                    {item.scheme_id.rate}
-                                  </h6>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                      {item.customer_paymentstatus}
+                                    </h6>
+                                  </div>
                                 </div>
-                              </div>
-                            </td> */}
-                            <td>
-                              <a
-                                href={"/userscheme/edit/" + item._id}
-                                class="btn btn-link text-dark px-3 mb-0"
-                              >
-                                <i
-                                  class="fas fa-pencil-alt text-dark me-2"
-                                  aria-hidden="true"
-                                ></i>
-                                Edit
-                              </a>
+                              </td>
+                              <td>
+                                <a
+                                  href={"/userscheme/view/" + item._id}
+                                  class="btn btn-link text-success px-3 mb-0"
+                                >
+                                  <i
+                                    class="fa fa-eye text-success me-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  View
+                                </a>
 
-                              <a
-                                class="btn btn-link text-danger text-gradient px-3 mb-0"
-                                onClick={() => deleteSchemes(item._id)}
-                              >
-                                <i
-                                  class="far fa-trash-alt me-2"
-                                  aria-hidden="true"
-                                ></i>
-                                Delete
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
+                                <a
+                                  href={"/userscheme/pay/" + item.payment_id}
+                                  class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                >
+                                  <i
+                                    class="fa fa-shopping-cart me-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  Pay
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>

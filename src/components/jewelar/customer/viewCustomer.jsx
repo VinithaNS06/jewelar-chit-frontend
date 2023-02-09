@@ -17,7 +17,7 @@ const ViewCustomer = () => {
   const [schemeList, setSchemeList] = useState([]);
   const getCustomers = async () => {
     let customerdetails = await fetch(
-      config.apiurl + "/api/customers/" + params.viewid,
+      config.apiurl + "api/customers/" + params.viewid,
       {
         method: "get",
         headers: {
@@ -31,7 +31,7 @@ const ViewCustomer = () => {
   };
   const getProducts = async () => {
     let productdetails = await fetch(
-      config.apiurl + "/api/orders/userorders/" + params.viewid,
+      config.apiurl + "api/orders/customerorders/" + params.viewid,
       {
         method: "get",
         headers: {
@@ -45,7 +45,7 @@ const ViewCustomer = () => {
   };
   const getSchemes = async () => {
     let schemedetails = await fetch(
-      config.apiurl + "/api/schemelist/scheme/" + params.viewid,
+      config.apiurl + "api/schemelist/scheme/" + params.viewid,
       {
         method: "get",
         headers: {

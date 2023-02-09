@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from './pages/home/Home';
 import PrivateComponent from "./components/PrivateComponents"
-import JewelArDashBoard from './components/jewelar/jewelardashboard/JewelArDashBoard';
+// import JewelArDashBoard from './components/jewelar/jewelardashboard/JewelArDashBoard';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Category from './components/jewelar/category/Category';
@@ -35,6 +35,8 @@ import ViewOrder from './components/jewelar/orders/viewOrder';
 import UserSchemeEdit from './components/goldchit/userScheme/editUserScheme';
 import ViewScheme from './components/goldchit/scheme/viewScheme';
 import AddAppointment from './components/jewelar/appointment/addAppointment';
+import ViewUserScheme from './components/goldchit/userScheme/viewUserScheme';
+import PayUserScheme from './components/goldchit/userScheme/payUserScheme';
 // import Sidebar from './components/jewelar/jewelAR/Sidebar';
 function App() {
   return (
@@ -47,7 +49,7 @@ function App() {
           {/* <Route path="jewelar" element={<Sidebar/>} />           */}
             <Route path="dashboard" element={<Home />} />
             <Route path="/" element={<Home/>}/>
-            <Route path="jewelar" element={<JewelArDashBoard/>}/>
+            {/* <Route path="jewelar" element={<JewelArDashBoard/>}/> */}
             <Route path="category" element={<Category />} />
             <Route path="category/add" element={<AddCategory />} />
             <Route path="products" element={<Products/>}/>
@@ -66,9 +68,11 @@ function App() {
             <Route path="scheme/edit/:id" element={<SchemeEdit/>}/>
             <Route path="scheme/view/:viewid" element={<ViewScheme/>}/>
             <Route path="userscheme" element={<UserScheme/>}/>
-            <Route path="userscheme/add" element={<UserSchemeAdd/>}/>
+            {/* <Route path="userscheme/add" element={<UserSchemeAdd/>}/> */}
             <Route path="userscheme/edit" element={<UserSchemeEdit/>}/>
             <Route path="userscheme/edit/:id" element={<UserSchemeEdit/>}/>
+            <Route path="userscheme/view/:viewid" element={<ViewUserScheme/>}/>
+            <Route path="userscheme/pay/:id" element={<PayUserScheme/>}/>
             <Route path="rate" element={<Rate/>}/>
             <Route path="rate/add" element={<RateAdd/>}/>
             <Route path="rate/edit" element={<RateEdit/>}/>

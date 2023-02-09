@@ -47,7 +47,7 @@ const SchemeEdit = () => {
         status,
       }),
     };
-    fetch(config.apiurl + `/api/schemes/${params.id}`, headers)
+    fetch(config.apiurl + `api/schemes/${params.id}`, headers)
       .then(() => toast("Scheme Updated Sucessfully"))
       .then(() =>
         setTimeout(() => {
@@ -58,7 +58,7 @@ const SchemeEdit = () => {
 
   const getProductView = async () => {
     let ProductDetails = await fetch(
-      config.apiurl + `/api/schemes/${params.id}`,
+      config.apiurl + `api/schemes/${params.id}`,
       {
         method: "get",
         headers: {

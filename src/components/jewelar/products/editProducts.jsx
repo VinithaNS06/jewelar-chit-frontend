@@ -35,14 +35,14 @@ const Productedit = () => {
   const params = useParams();
 
   const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category");
+    let catresult = await fetch(config.apiurl + "api/category/getcategory");
     catresult = await catresult.json();
     setCategories(catresult.data.results);
   };
 
   const getProductedit = async () => {
     let proeditdetails = await fetch(
-      config.apiurl + "/api/products/" + params.id,
+      config.apiurl + "api/products/" + params.id,
       {
         method: "get",
         headers: {
@@ -93,7 +93,7 @@ const Productedit = () => {
   };
 
   const submitProductDetails = async (res) => {
-    const editupdateurl = config.apiurl + "/api/products/" + params.id;
+    const editupdateurl = config.apiurl + "api/products/" + params.id;
     const configdata = {
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const Productedit = () => {
     }
     /*Image Upload process here */
     if (imagede) {
-      const imageupurl = config.apiurl + "/api/upload/upload-single";
+      const imageupurl = config.apiurl + "api/upload/upload-single";
       const configimg = {
         headers: {
           "content-type": "multipart/form-data",

@@ -1,6 +1,7 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/headerbar/Header";
 import "./home.scss";
+import BarChart from "../../pages/barChart/BarChart";
 
 const Home = () => {
   return (
@@ -132,6 +133,9 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <BarChart />
         </div>
       </main>
     </>

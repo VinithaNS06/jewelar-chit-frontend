@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Header from "../../../components/headerbar/Header";
-
+// import DatePicker from "react-date-picker";
+// import TimePicker from "react-time-picker";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -9,7 +10,7 @@ import config from "../../../config.json";
 import { useNavigate } from "react-router-dom";
 const AddAppointment = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
-  // const [Raterowid, setRowId] = useState("");
+  const [Products, setproducts] = useState("");
   const [user_id, setUser_Id] = useState("");
   const [product_id, setProduct_Id] = useState("");
   const [staff_id, setStaff_Id] = useState("");
@@ -22,9 +23,12 @@ const AddAppointment = () => {
       user_id,
       product_id,
       staff_id,
+      date,
+      time,
+      Products,
     };
     console.log(newAppot);
-    fetch(config.apiurl + "/api/schedule/createappt", {
+    fetch(config.apiurl + "api/schedule/createappt", {
       method: "POST",
       body: JSON.stringify(newAppot),
       headers: {
@@ -39,15 +43,17 @@ const AddAppointment = () => {
         }, 5000)
       );
   }
+
   const [userId, setUserId] = useState([]);
   //   const [productId, setProductId] = useState("");
   const [productName, setProductName] = useState("");
   const [schemeUserId, setSchemeUserId] = useState("");
   const [products, setProducts] = useState([]);
-
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   useEffect(() => {
     axios
-      .get(config.apiurl + "/api/users/get-users")
+      .get(config.apiurl + "api/users/get-users")
       .then((res) => {
         console.log(res.data);
         setUserId(res.data.data);
@@ -57,7 +63,7 @@ const AddAppointment = () => {
       });
   }, []);
   const getProducts = async () => {
-    let prodresult = await fetch(config.apiurl + "/api/products/getproduct");
+    let prodresult = await fetch(config.apiurl + "api/products/getproduct");
     prodresult = await prodresult.json();
     console.log(prodresult.data);
     setProducts(prodresult.data.results);
@@ -67,7 +73,7 @@ const AddAppointment = () => {
     getProducts();
   }, []);
   const getStaffData = async () => {
-    let staffList = await fetch(config.apiurl + "/api/staff/getstaff", {
+    let staffList = await fetch(config.apiurl + "api/staff/getstaff", {
       method: "get",
     });
     staffList = await staffList.json();
@@ -106,11 +112,13 @@ const AddAppointment = () => {
                           onChange={(e) => setStaff_Id(e.target.value)}
                         >
                           <option>Choose Staff Name</option>
-                          {staffListInfo.map((stf) => (
-                            <option value={stf._id} key={stf._id}>
-                              {stf.name}- {stf.staffid}
-                            </option>
-                          ))}
+                          {staffListInfo &&
+                            staffListInfo.length &&
+                            staffListInfo.map((stf) => (
+                              <option value={stf._id} key={stf._id}>
+                                {stf.name}- {stf.staffid}
+                              </option>
+                            ))}
                         </select>
                         {error && !schemeUserId && (
                           <span class="text-danger text-gradient text-xs text-secondary">
@@ -176,30 +184,75 @@ const AddAppointment = () => {
                         )}
                       </div>
                     </div>
-                    {/* <td>
-                      <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs mb-2">
-                            <span class="text-dark font-weight-bold ms-sm-2">
-                              {item.user_date}
-                              {"  "}
-                              {item.user_Time}
-                            </span>
-                          </p>
-                        </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label
+                          for="example-text-input"
+                          class="form-control-label"
+                        >
+                          Date
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          value={date}
+                          onChange={(e) => {
+                            setDate(e.target.value);
+                          }}
+                        />
+                        {error && !date && (
+                          <span class="text-danger text-gradient text-xs text-secondary">
+                            Enter the Date
+                          </span>
+                        )}
                       </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs mb-2">
-                            <span class="text-dark font-weight-bold ms-sm-2">
-                              {item.user_products}
-                            </span>
-                          </p>
-                        </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label
+                          for="example-text-input"
+                          class="form-control-label"
+                        >
+                          Time
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          value={time}
+                          onChange={(e) => {
+                            setTime(e.target.value);
+                          }}
+                        />
+                        {error && !time && (
+                          <span class="text-danger text-gradient text-xs text-secondary">
+                            Enter the Time
+                          </span>
+                        )}
                       </div>
-                    </td> */}
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label
+                          for="example-text-input"
+                          class="form-control-label"
+                        >
+                          Products
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          value={Products}
+                          onChange={(e) => {
+                            setproducts(e.target.value);
+                          }}
+                        />
+                        {error && !Products && (
+                          <span class="text-danger text-gradient text-xs text-secondary">
+                            Enter the Products
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <ToastContainer />
                   <div class="row">

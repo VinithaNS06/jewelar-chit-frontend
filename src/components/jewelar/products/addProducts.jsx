@@ -35,7 +35,7 @@ const AddProducts = () => {
   const [error, setError] = useState(false);
 
   const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "/api/category/getcategory");
+    let catresult = await fetch(config.apiurl + "api/category/getcategory");
     catresult = await catresult.json();
     setCategories(catresult.data.results);
   };
@@ -66,7 +66,7 @@ const AddProducts = () => {
   };
 
   const submitProductDetails = async (res) => {
-    const editupdateurl = config.apiurl + "/api/products/";
+    const editupdateurl = config.apiurl + "api/products/";
     const configdata = {
       headers: {
         "Content-Type": "application/json",
@@ -96,14 +96,13 @@ const AddProducts = () => {
   };
 
   const handleProsubmit = async () => {
-    console.log("sdfsfsd");
     if (!category_id || !title || !carrot || !wastage || !making || !price) {
       console.log("asd");
       setError(true);
       return false;
     }
 
-    const imageupurl = config.apiurl + "/api/upload/upload-single";
+    const imageupurl = config.apiurl + "api/upload/upload-single";
     const configimg = {
       headers: {
         "content-type": "multipart/form-data",

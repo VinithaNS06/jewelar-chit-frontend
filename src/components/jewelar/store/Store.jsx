@@ -15,7 +15,7 @@ const Store = () => {
   }, []);
 
   const getStore = async () => {
-    let storeresult = await fetch(config.apiurl + "/api/branch");
+    let storeresult = await fetch(config.apiurl + "api/branch");
     storeresult = await storeresult.json();
     setStores(storeresult.data.results);
   };
@@ -35,10 +35,10 @@ const Store = () => {
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "/api/branch/" + updateid;
+      apicaturl = config.apiurl + "api/branch/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "/api/branch/create";
+      apicaturl = config.apiurl + "api/branch/create";
       methodapi = "post";
     }
 
@@ -60,15 +60,12 @@ const Store = () => {
   };
 
   const getStoreedit = async (editid) => {
-    let storeeditdetails = await fetch(
-      config.apiurl + "/api/branch/" + editid,
-      {
-        method: "get",
-        headers: {
-          Authorization: "bearer " + accesstoken.data.access_token,
-        },
-      }
-    );
+    let storeeditdetails = await fetch(config.apiurl + "api/branch/" + editid, {
+      method: "get",
+      headers: {
+        Authorization: "bearer " + accesstoken.data.access_token,
+      },
+    });
     storeeditdetails = await storeeditdetails.json();
     setLocation(storeeditdetails.data[0].name);
     setAddress(storeeditdetails.data[0].location);
@@ -76,7 +73,7 @@ const Store = () => {
   };
 
   const deleteStore = async (id) => {
-    let deletest = await fetch(config.apiurl + "/api/branch/" + id, {
+    let deletest = await fetch(config.apiurl + "api/branch/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

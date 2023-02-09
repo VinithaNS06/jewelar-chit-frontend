@@ -14,7 +14,7 @@ const Staff = () => {
   }, []);
 
   const getStaffDetails = async () => {
-    let catresult = await fetch(config.apiurl + "/api/staff/getstaff");
+    let catresult = await fetch(config.apiurl + "api/staff/getstaff");
     catresult = await catresult.json();
     setStaffList(catresult.data.results);
   };
@@ -32,10 +32,10 @@ const Staff = () => {
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "/api/staff/" + updateid;
+      apicaturl = config.apiurl + "api/staff/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "/api/staff/create";
+      apicaturl = config.apiurl + "api/staff/create";
       methodapi = "post";
     }
 
@@ -55,7 +55,7 @@ const Staff = () => {
   };
 
   const getCategoryedit = async (editid) => {
-    let cateditdetails = await fetch(config.apiurl + "/api/staff/" + editid, {
+    let cateditdetails = await fetch(config.apiurl + "api/staff/" + editid, {
       method: "get",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -68,7 +68,7 @@ const Staff = () => {
   };
 
   const deleteStaff = async (id) => {
-    let deletecat = await fetch(config.apiurl + "/api/staff/" + id, {
+    let deletecat = await fetch(config.apiurl + "api/staff/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

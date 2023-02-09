@@ -21,7 +21,7 @@ const RateAdd = () => {
       type,
       status,
     };
-    fetch(config.apiurl + "/api/rates/", {
+    fetch(config.apiurl + "api/rates/", {
       method: "POST",
       body: JSON.stringify(newRate),
       headers: {

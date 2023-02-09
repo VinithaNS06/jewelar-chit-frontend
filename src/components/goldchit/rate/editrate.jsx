@@ -31,7 +31,7 @@ const RateEdit = () => {
         status: status,
       }),
     };
-    fetch(config.apiurl + `/api/rates/${params.id}`, headers)
+    fetch(config.apiurl + `api/rates/${params.id}`, headers)
       .then(() => toast("Rate Updated Sucessfully"))
       .then(() =>
         setTimeout(() => {
@@ -41,7 +41,7 @@ const RateEdit = () => {
   };
 
   const getRateView = async () => {
-    let RateDetails = await fetch(config.apiurl + `/api/rates/${params.id}`, {
+    let RateDetails = await fetch(config.apiurl + `api/rates/${params.id}`, {
       method: "get",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,

@@ -10,14 +10,16 @@ import "./order.scss";
 const OrderEdit = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   // const [rateid, setRateId] = useState("");
-  const [user_id, setUserId] = useState("");
+  const [customer_id, setCustomerId] = useState("");
   const [product_id, setProductId] = useState("");
   const [total_amount, setTotalAmount] = useState("");
   //   const [address, setAddress] = useState("");
 
   const [schemeUserId, setSchemeUserId] = useState("");
-  const [users, setUsers] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  console.log(customers);
   const [productId, setProductsId] = useState([]);
+  // console.log(productId);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const params = useParams();
@@ -33,13 +35,13 @@ const OrderEdit = () => {
         Authorization: "bearer " + accesstoken.data.access_token,
       },
       body: JSON.stringify({
-        user_id: user_id,
+        customer_id: customer_id,
         product_id: product_id,
         total_amount: total_amount,
         // address: address,
       }),
     };
-    fetch(config.apiurl + `/api/orders/${params.editid}`, headers)
+    fetch(config.apiurl + `api/orders/${params.editid}`, headers)
       .then(() => toast("Order Updated Sucessfully"))
       .then(() =>
         setTimeout(() => {
@@ -51,7 +53,7 @@ const OrderEdit = () => {
   const getOrderView = async () => {
     console.log(params);
     let CustomerDetails = await fetch(
-      config.apiurl + `/api/orders/${params.editid}`,
+      config.apiurl + `api/orders/${params.editid}`,
       {
         method: "get",
         headers: {
@@ -60,19 +62,21 @@ const OrderEdit = () => {
       }
     );
     CustomerDetails = await CustomerDetails.json();
+    console.log("CustomerDetails");
     console.log(CustomerDetails);
-    setUserId(CustomerDetails.data[0].user_id);
-    setProductId(CustomerDetails.data[0].product_id);
-    setTotalAmount(CustomerDetails.data[0].total_amount);
+    // setCustomerId(CustomerDetails.data.results);
+
+    setProductId(CustomerDetails.data._id);
+    setTotalAmount(CustomerDetails.data.total_amount);
     // setAddress(CustomerDetails.data[0].address);
     // getProductvalue(schemeDetails.data[0].products);
   };
   useEffect(() => {
     axios
-      .get(config.apiurl + "/api/users/get-users")
+      .get(config.apiurl + "api/customers/getCustomer")
       .then((res) => {
         console.log(res.data);
-        setUsers(res.data.data);
+        setCustomers(res.data.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -80,7 +84,7 @@ const OrderEdit = () => {
   }, []);
   useEffect(() => {
     axios
-      .get(config.apiurl + "/api/orders/")
+      .get(config.apiurl + "api/orders/")
       .then((res) => {
         // console.log(res.data);
         setProductsId(res.data.data);
@@ -115,24 +119,26 @@ const OrderEdit = () => {
                           for="example-text-input"
                           class="form-control-label"
                         >
-                          User Details
+                          Customer Details
                         </label>
                         <select
                           className="form-control"
-                          value={user_id}
-                          onChange={(e) => setUserId(e.target.value)}
+                          value={customer_id}
+                          onChange={(e) => setCustomerId(e.target.value)}
                         >
-                          <option>Choose User Name</option>
-                          {users.map((usr) => (
-                            <option value={usr._id} key={usr._id}>
-                              {usr.name}-{usr.phone}
-                            </option>
-                          ))}
+                          <option>Choose Customer Name</option>
+                          {customers &&
+                            customers.length &&
+                            customers.map((cus) => (
+                              <option value={cus._id}>
+                                {cus.name}-{cus.phone}
+                              </option>
+                            ))}
                         </select>
 
                         {error && !schemeUserId && (
                           <span class="text-danger text-gradient text-xs text-secondary">
-                            Enter the User Details
+                            Enter the Customer Details
                           </span>
                         )}
                       </div>
@@ -151,11 +157,13 @@ const OrderEdit = () => {
                           onChange={(e) => setProductId(e.target.value)}
                         >
                           <option>Choose Product</option>
-                          {productId.map((prodt) => (
-                            <option value={prodt.user_product_id}>
-                              {prodt.user_product_title}
-                            </option>
-                          ))}
+                          {productId &&
+                            productId.length &&
+                            productId.map((prodt) => (
+                              <option value={prodt.product_id}>
+                                {prodt.customer_product_title}
+                              </option>
+                            ))}
                         </select>
 
                         {error && !schemeUserId && (
