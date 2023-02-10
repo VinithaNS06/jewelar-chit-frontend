@@ -26,13 +26,13 @@ const BarChart = () => {
     datasets: [
       {
         label: "Sales Of the Week",
-        data: [6, 3, 9, 3.69],
+        data: [1, 2, 3, 4, 5, 6, 3, 4, 8, 9],
         pointBackgroundColor: "aqua",
         backgroundColor: "aqua",
         borderColor: "black",
         pointBorderColor: "aqua",
         Filler: true,
-        tension: 0.4,
+        tension: 0.0,
       },
     ],
   };

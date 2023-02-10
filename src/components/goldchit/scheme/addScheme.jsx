@@ -45,7 +45,7 @@ const SchemeAdd = () => {
       product_status,
     };
     console.log(newProduct);
-    fetch(config.apiurl + "/api/schemes/createscheme", {
+    fetch(config.apiurl + "api/schemes/createscheme", {
       method: "POST",
       body: JSON.stringify(newProduct),
       headers: {

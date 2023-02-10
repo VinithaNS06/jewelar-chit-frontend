@@ -122,6 +122,30 @@ const Sidebar = () => {
               <span class="nav-link-text ms-1">Rate</span>
             </Link>
           </li>
+          {/* <li class="nav-item">
+            <Link class="nav-link m-0" to="/report">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-star text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Report</span>
+            </Link>
+          </li> */}
+          <li class="nav-item">
+            <Link class="nav-link m-0" to="/report/userscheme">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-bug text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">UserScheme Report</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link m-0" to="/report/orderreport">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-bug text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Order Report</span>
+            </Link>
+          </li>
         </ul>
       </div>
     </aside>

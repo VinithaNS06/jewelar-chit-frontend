@@ -37,6 +37,8 @@ import ViewScheme from './components/goldchit/scheme/viewScheme';
 import AddAppointment from './components/jewelar/appointment/addAppointment';
 import ViewUserScheme from './components/goldchit/userScheme/viewUserScheme';
 import PayUserScheme from './components/goldchit/userScheme/payUserScheme';
+import UserSchemeReport from './components/goldchit/report/userSchemeReport/userSchemeReport';
+import OrderReport from './components/goldchit/report/orderReport/OrderReport';
 // import Sidebar from './components/jewelar/jewelAR/Sidebar';
 function App() {
   return (
@@ -89,7 +91,8 @@ function App() {
             <Route path="customer/edit/:editid" element={<CustomerEdit/>}/>
             <Route path="customer/view/:viewid" element={<ViewCustomer/>}/>
              <Route path="store" element={<Store />} />
-             
+             <Route path="report/userscheme" element={<UserSchemeReport/>}/>
+             <Route path="report/orderreport" element={<OrderReport/>}/>
                 </Route>             
             
         </Routes>

@@ -18,6 +18,7 @@
 //     const newProduct = {
 //       user_id,
 //       scheme_id,
+
 //     };
 //     console.log(newProduct);
 //     fetch(config.apiurl + "api/userscheme/create-userscheme", {

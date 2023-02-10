@@ -111,9 +111,9 @@ const Order = () => {
                                     <p class="text-xs mb-2">
                                       Product {item.customer_product_product}
                                     </p>
-                                    <p class="text-xs mb-2">
+                                    {/* <p class="text-xs mb-2">
                                       Price: {item.customer_product_price}
-                                    </p>
+                                    </p> */}
                                   </div>
 
                                   <td>
