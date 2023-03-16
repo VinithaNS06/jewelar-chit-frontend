@@ -64,28 +64,28 @@
 //   }, []);
 //   return (
 //     <>
-//       <div class="min-height-300 bg-primary position-absolute w-100"></div>
+//       <div className="min-height-300 bg-primary position-absolute w-100"></div>
 //       <Sidebar />
 //       <main className="main-content position-relative border-radius-lg ">
 //         <Header />
-//         <div class="container-fluid py-4">
-//           <div class="row">
-//             <div class="col-12">
-//               <div class="card mb-4">
-//                 <div class="card-header pb-3">
-//                   <div class="row">
-//                     <div class="col-6 d-flex align-items-center">
-//                       <h6 class="mb-0">Add User Scheme</h6>
+//         <div className="container-fluid py-4">
+//           <div className="row">
+//             <div className="col-12">
+//               <div className="card mb-4">
+//                 <div className="card-header pb-3">
+//                   <div className="row">
+//                     <div className="col-6 d-flex align-items-center">
+//                       <h6 className="mb-0">Add User Scheme</h6>
 //                     </div>
 //                   </div>
 //                 </div>
-//                 <div class="card-body">
-//                   <div class="row">
-//                     <div class="col-md-4">
-//                       <div class="form-group">
+//                 <div className="card-body">
+//                   <div className="row">
+//                     <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           User Details
 //                         </label>
@@ -103,22 +103,22 @@
 //                         </select>
 
 //                         {error && !schemeUserId && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the User Details
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div>
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Scheme Id
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="text"
 //                           value={scheme_id}
 //                           onChange={(e) => {
@@ -126,17 +126,17 @@
 //                           }}
 //                         />
 //                         {error && !scheme_id && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Scheme Id
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     <div class="col-md-4">
-//                       <div class="form-group">
+//                     <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Scheme Details
 //                         </label>
@@ -156,22 +156,22 @@
 //                         </select>
 
 //                         {error && !schemeUserId && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the User Details
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div>
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Scheme Name
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="text"
 //                           value={scheme_name}
 //                           onChange={(e) => {
@@ -179,22 +179,22 @@
 //                           }}
 //                         />
 //                         {error && !scheme_name && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Product Name
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Scheme Code
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="text"
 //                           value={scheme_code}
 //                           onChange={(e) => {
@@ -202,22 +202,22 @@
 //                           }}
 //                         />
 //                         {error && !scheme_code && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Scheme Code
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Duration
 //                         </label>
 //                         <select
-//                           class="form-control"
+//                           className="form-control"
 //                           type="text"
 //                           value={duration}
 //                           onChange={(e) => {
@@ -251,22 +251,22 @@
 //                           <option>24</option>
 //                         </select>
 //                         {error && !duration && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Duration
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
+//                     {/* <div className="col-md-4">
 //                       <label
-//                         for="example-text-input"
-//                         class="form-control-label"
+//                         htmlFor="example-text-input"
+//                         className="form-control-label"
 //                       >
 //                         Rate
 //                       </label>
-//                       <div class="form-check">
+//                       <div className="form-check">
 //                         <input
-//                           class="form-check-input"
+//                           className="form-check-input"
 //                           type="radio"
 //                           value="Yes"
 //                           name="rate"
@@ -274,12 +274,12 @@
 //                             setRate(e.target.value);
 //                           }}
 //                         />
-//                         <label class="form-check-label" for="yes">
+//                         <label className="form-check-label" htmlFor="yes">
 //                           Yes
 //                         </label>
 //                         <br></br>
 //                         <input
-//                           class="form-check-input"
+//                           className="form-check-input"
 //                           type="radio"
 //                           value="No"
 //                           name="rate"
@@ -287,28 +287,28 @@
 //                             setRate(e.target.value);
 //                           }}
 //                         />
-//                         <label class="form-check-label" for="no">
+//                         <label className="form-check-label" htmlFor="no">
 //                           No
 //                         </label>
 //                         <br></br>
 //                         {error && !rate && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Rate
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Grams
 //                         </label>
-//                         <div class="form-check">
+//                         <div className="form-check">
 //                           <input
-//                             class="form-check-input"
+//                             className="form-check-input"
 //                             type="radio"
 //                             value="Yes"
 //                             name="grams"
@@ -316,12 +316,12 @@
 //                               setGrams(e.target.value);
 //                             }}
 //                           />
-//                           <label class="form-check-label" for="yes">
+//                           <label className="form-check-label" htmlFor="yes">
 //                             yes
 //                           </label>
 //                           <br></br>
 //                           <input
-//                             class="form-check-input"
+//                             className="form-check-input"
 //                             type="radio"
 //                             value="No"
 //                             name="grams"
@@ -329,28 +329,28 @@
 //                               setGrams(e.target.value);
 //                             }}
 //                           />
-//                           <label class="form-check-label" for="no">
+//                           <label className="form-check-label" htmlFor="no">
 //                             No
 //                           </label>
 //                           <br></br>
 //                           {error && !grams && (
-//                             <span class="text-danger text-gradient text-xs text-secondary">
+//                             <span className="text-danger text-gradient text-xs text-secondary">
 //                               Enter the Grams
 //                             </span>
 //                           )}
 //                         </div>
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Installment
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={installment}
 //                           onChange={(e) => {
@@ -358,22 +358,22 @@
 //                           }}
 //                         />
 //                         {error && !installment && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Installment
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Total Installment
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={totalinstallment}
 //                           onChange={(e) => {
@@ -381,22 +381,22 @@
 //                           }}
 //                         />
 //                         {error && !totalinstallment && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Total Installment
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Paid Installment
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={paidinstallment}
 //                           onChange={(e) => {
@@ -404,22 +404,22 @@
 //                           }}
 //                         />
 //                         {error && !paidinstallment && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Paid Installment
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Pending Installment
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={pendinginstallment}
 //                           onChange={(e) => {
@@ -427,22 +427,22 @@
 //                           }}
 //                         />
 //                         {error && !pendinginstallment && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Installment
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Amount
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={amount}
 //                           onChange={(e) => {
@@ -450,22 +450,22 @@
 //                           }}
 //                         />
 //                         {error && !amount && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Amount
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Minimum Amount
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={min_amount}
 //                           onChange={(e) => {
@@ -473,22 +473,22 @@
 //                           }}
 //                         />
 //                         {error && !min_amount && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Minimum Amount
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Maximum Amount
 //                         </label>
 //                         <input
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={max_amount}
 //                           onChange={(e) => {
@@ -496,22 +496,22 @@
 //                           }}
 //                         />
 //                         {error && !max_amount && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Maximum Amount
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Amount Step Up
 //                         </label>
 //                         <select
-//                           class="form-control"
+//                           className="form-control"
 //                           type="number"
 //                           value={amountstepup}
 //                           onChange={(e) => {
@@ -531,17 +531,17 @@
 //                           <option>10</option>
 //                         </select>
 //                         {error && !amountstepup && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the AmountStepUp
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           User Details
 //                         </label>
@@ -559,22 +559,22 @@
 //                         </select>
 
 //                         {error && !schemeUserId && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the User Details
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="col-md-4">
-//                       <div class="form-group">
+//                     {/* <div className="col-md-4">
+//                       <div className="form-group">
 //                         <label
-//                           for="example-text-input"
-//                           class="form-control-label"
+//                           htmlFor="example-text-input"
+//                           className="form-control-label"
 //                         >
 //                           Status
 //                         </label>
 //                         <select
-//                           class="form-control"
+//                           className="form-control"
 //                           type="text"
 //                           value={status}
 //                           onChange={(e) => {
@@ -586,23 +586,23 @@
 //                           <option>InActive</option>
 //                         </select>
 //                         {error && !status && (
-//                           <span class="text-danger text-gradient text-xs text-secondary">
+//                           <span className="text-danger text-gradient text-xs text-secondary">
 //                             Enter the Status
 //                           </span>
 //                         )}
 //                       </div>
 //                     </div> */}
-//                     {/* <div class="row">
-//                       <div class="col-md-12">
-//                         <div class="form-group">
+//                     {/* <div className="row">
+//                       <div className="col-md-12">
+//                         <div className="form-group">
 //                           <label
-//                             for="example-text-input"
-//                             class="form-control-label"
+//                             htmlFor="example-text-input"
+//                             className="form-control-label"
 //                           >
 //                             Scheme Description
 //                           </label>
 //                           <textarea
-//                             class="form-control"
+//                             className="form-control"
 //                             rows="5"
 //                             value={scheme_desc}
 //                             onChange={(e) => {
@@ -614,12 +614,12 @@
 //                     </div> */}
 //                   </div>
 //                   <ToastContainer />
-//                   <div class="row">
-//                     <div class="text-end">
+//                   <div className="row">
+//                     <div className="text-end">
 //                       <button
 //                         type="button"
 //                         onClick={addProduct}
-//                         class="btn btn-primary btn-sm ms-auto mt-5"
+//                         className="btn btn-primary btn-sm ms-auto mt-5"
 //                       >
 //                         Submit
 //                       </button>

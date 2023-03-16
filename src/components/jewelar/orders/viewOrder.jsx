@@ -28,42 +28,42 @@ const ViewOrder = () => {
 
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Order View</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Order View</h6>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="text-end">
+                <div className="row">
+                  <div className="text-end">
                     <Link
                       to="/orders"
                       type="button"
-                      class="btn btn-primary btn-md ms-auto mt-5"
+                      className="btn btn-primary btn-md ms-auto mt-5"
                     >
                       Back
                     </Link>
                   </div>
-                  <div class="row">
-                    <div class="col-xl-8 col-sm-12 mb-xl-0 mb-4">
-                      <div class="">
-                        <div class="card-body p-3">
-                          <div class="row">
-                            <div class="numbers">
-                              <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                  <div className="row">
+                    <div className="col-xl-8 col-sm-12 mb-xl-0 mb-4">
+                      <div className="">
+                        <div className="card-body p-3">
+                          <div className="row">
+                            <div className="numbers">
+                              <p className="text-sm mb-0 text-uppercase font-weight-bold">
                                 Customer Details
                               </p>
-                              <div class="table-responsive p-5">
-                                <table class="table align-items-center mb-0 ">
+                              <div className="table-responsive p-5">
+                                <table className="table align-items-center mb-0 ">
                                   <tr>
                                     <td>Name</td>
                                     <td>
@@ -96,16 +96,16 @@ const ViewOrder = () => {
                       </div>
                     </div>
 
-                    <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                      <div class="">
-                        <div class="card-body p-3">
-                          <div class="row">
-                            <div class="numbers">
-                              <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                    <div className="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                      <div className="">
+                        <div className="card-body p-3">
+                          <div className="row">
+                            <div className="numbers">
+                              <p className="text-sm mb-0 text-uppercase font-weight-bold">
                                 Product Details
                               </p>
-                              <div class="table-responsive p-5">
-                                <table class="table align-items-center mb-0 ">
+                              <div className="table-responsive p-5">
+                                <table className="table align-items-center mb-0 ">
                                   <tr>
                                     <td>Product Tilte</td>
                                     <td>
@@ -152,18 +152,18 @@ const ViewOrder = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <div class="card-body px-0 pt-0 pb-2">
-                  <p class="text-sm mb-0 text-uppercase font-weight-bold pl-2">
+                  {/* <div className="card-body px-0 pt-0 pb-2">
+                  <p className="text-sm mb-0 text-uppercase font-weight-bold pl-2">
                     {" "}
                     Product Details
                   </p>
-                  <div class="table-responsive p-5">
-                    <table class="table align-items-center mb-0 ">
+                  <div className="table-responsive p-5">
+                    <table className="table align-items-center mb-0 ">
                       <thead>
                         <tr>
-                          <th class="text-secondary opacity-7 ps-2">S.No</th>
-                          <th class="text-secondary opacity-7">Image</th>
-                          <th class="text-secondary opacity-7 ps-2">Name</th>
+                          <th className="text-secondary opacity-7 ps-2">S.No</th>
+                          <th className="text-secondary opacity-7">Image</th>
+                          <th className="text-secondary opacity-7 ps-2">Name</th>
                         </tr>
                       </thead>
 
@@ -174,7 +174,7 @@ const ViewOrder = () => {
                             <td>
                               <img
                                 src={config.baseurl + item.image}
-                                class="avatar avatar-sm me-3"
+                                className="avatar avatar-sm me-3"
                                 alt={item.name}
                               />
                             </td>
@@ -187,24 +187,24 @@ const ViewOrder = () => {
                 </div> */}
                 </div>
               </div>
-              {/* <div class="col-md-4">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Update Status</h6>
+              {/* <div className="col-md-4">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Update Status</h6>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
                           required=""
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Staff
                         </label>
@@ -221,30 +221,30 @@ const ViewOrder = () => {
                           ))}
                         </select>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
                           required=""
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Comments
                         </label>
                         <textarea
-                          class="form-control"
+                          className="form-control"
                           name="stsComments"
                           value={comments}
                           onChange={(e) => setComments(e.target.value)}
                         ></textarea>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Status
                         </label>
                         <select
-                          class="form-control"
+                          className="form-control"
                           name="status"
                           value={scheduleStatus}
                           onChange={(e) => setScheduleStatus(e.target.value)}
@@ -260,11 +260,11 @@ const ViewOrder = () => {
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="button"
-                        class="btn btn-primary btn-sm ms-auto mt-5"
+                        className="btn btn-primary btn-sm ms-auto mt-5"
                         onClick={updateStatus}
                       >
                         Submit

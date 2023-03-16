@@ -13,6 +13,7 @@ const SchemeAdd = () => {
   const [scheme_name, setProductName] = useState("");
   const [scheme_desc, setProductDesc] = useState("");
   const [grams, setGrams] = useState("");
+  const [Benefits, setBenefits] = useState("");
   const [rate, setRate] = useState("");
   const [duration, setDuration] = useState("");
   const [installment, setInstallMent] = useState("");
@@ -32,6 +33,7 @@ const SchemeAdd = () => {
       scheme_desc,
       scheme_code,
       duration,
+      Benefits,
       grams,
       rate,
       installment,
@@ -63,33 +65,33 @@ const SchemeAdd = () => {
 
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Add Scheme</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Add Scheme</h6>
                     </div>
                   </div>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Scheme Name
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={scheme_name}
                           onChange={(e) => {
@@ -97,23 +99,23 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !scheme_name && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Product Name
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Scheme Code
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={scheme_code}
                           onChange={(e) => {
@@ -121,22 +123,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !scheme_code && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Scheme Code
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Duration
                         </label>
                         <select
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={duration}
                           onChange={(e) => {
@@ -170,22 +172,22 @@ const SchemeAdd = () => {
                           <option>24</option>
                         </select>
                         {error && !duration && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Duration
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div className="col-md-4">
                       <label
-                        for="example-text-input"
-                        class="form-control-label"
+                        htmlFor="example-text-input"
+                        className="form-control-label"
                       >
                         Rate
                       </label>
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="radio"
                           value="Yes"
                           name="rate"
@@ -193,12 +195,12 @@ const SchemeAdd = () => {
                             setRate(e.target.value);
                           }}
                         />
-                        <label class="form-check-label" for="yes">
+                        <label className="form-check-label" htmlFor="yes">
                           Yes
                         </label>
                         <br></br>
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="radio"
                           value="No"
                           name="rate"
@@ -206,29 +208,29 @@ const SchemeAdd = () => {
                             setRate(e.target.value);
                           }}
                         />
-                        <label class="form-check-label" for="no">
+                        <label className="form-check-label" htmlFor="no">
                           No
                         </label>
                         <br></br>
                         {error && !rate && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Rate
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Grams
                         </label>
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             value="Yes"
                             name="grams"
@@ -236,12 +238,12 @@ const SchemeAdd = () => {
                               setGrams(e.target.value);
                             }}
                           />
-                          <label class="form-check-label" for="yes">
+                          <label className="form-check-label" htmlFor="yes">
                             yes
                           </label>
                           <br></br>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             value="No"
                             name="grams"
@@ -249,28 +251,28 @@ const SchemeAdd = () => {
                               setGrams(e.target.value);
                             }}
                           />
-                          <label class="form-check-label" for="no">
+                          <label className="form-check-label" htmlFor="no">
                             No
                           </label>
                           <br></br>
                           {error && !grams && (
-                            <span class="text-danger text-gradient text-xs text-secondary">
+                            <span className="text-danger text-gradient text-xs text-secondary">
                               Enter the Grams
                             </span>
                           )}
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Installment
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={installment}
                           onChange={(e) => {
@@ -278,22 +280,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !installment && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Installment
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Total Installment
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={totalinstallment}
                           onChange={(e) => {
@@ -301,22 +303,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !totalinstallment && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Total Installment
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Paid Installment
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={paidinstallment}
                           onChange={(e) => {
@@ -324,22 +326,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !paidinstallment && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Paid Installment
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Pending Installment
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={pendinginstallment}
                           onChange={(e) => {
@@ -347,22 +349,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !pendinginstallment && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Installment
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Amount
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={amount}
                           onChange={(e) => {
@@ -370,22 +372,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !amount && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Amount
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Minimum Amount
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={min_amount}
                           onChange={(e) => {
@@ -393,22 +395,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !min_amount && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Minimum Amount
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Maximum Amount
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={max_amount}
                           onChange={(e) => {
@@ -416,22 +418,22 @@ const SchemeAdd = () => {
                           }}
                         />
                         {error && !max_amount && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Maximum Amount
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Amount Step Up
                         </label>
                         <select
-                          class="form-control"
+                          className="form-control"
                           type="number"
                           value={amountstepup}
                           onChange={(e) => {
@@ -451,23 +453,24 @@ const SchemeAdd = () => {
                           <option>10</option>
                         </select>
                         {error && !amountstepup && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the AmountStepUp
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
+
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <label
-                            for="example-text-input"
-                            class="form-control-label"
+                            htmlFor="example-text-input"
+                            className="form-control-label"
                           >
                             Scheme Description
                           </label>
                           <textarea
-                            class="form-control"
+                            className="form-control"
                             rows="5"
                             value={scheme_desc}
                             onChange={(e) => {
@@ -476,42 +479,35 @@ const SchemeAdd = () => {
                           ></textarea>
                         </div>
                       </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
+                    </div>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <label
-                            for="example-text-input"
-                            class="form-control-label"
+                            htmlFor="example-text-input"
+                            className="form-control-label"
                           >
-                            Product Status
+                            Benefits
                           </label>
-                          <select
-                            class="form-control"
-                            type="text"
-                            value={product_status}
+                          <textarea
+                            className="form-control"
+                            rows="5"
+                            value={Benefits}
                             onChange={(e) => {
-                              setProduct_Status(e.target.value);
+                              setBenefits(e.target.value);
                             }}
-                          >
-                            <option>Select Status</option>
-                            <option>Active</option>
-                            <option>InActive</option>
-                          </select>
-                          {error && !product_status && (
-                            <span class="text-danger text-gradient text-xs text-secondary">
-                              Enter the Status
-                            </span>
-                          )}
+                          ></textarea>
                         </div>
                       </div>
                     </div>
                   </div>
                   <ToastContainer />
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="button"
                         onClick={addProduct}
-                        class="btn btn-primary btn-sm ms-auto mt-5"
+                        className="btn btn-primary btn-sm ms-auto mt-5"
                       >
                         Submit
                       </button>

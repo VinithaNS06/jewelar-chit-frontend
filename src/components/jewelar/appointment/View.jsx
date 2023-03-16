@@ -60,7 +60,7 @@ const ViewAppointment = () => {
       }
     );
     productList = await productList.json();
-    console.log(productList);
+    // console.log(productList);
     setStatus(productList.data[0].schedule_status);
     setDate(productList.data[0].date);
     setTime(productList.data[0].time);
@@ -69,32 +69,32 @@ const ViewAppointment = () => {
 
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Appointment View</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Appointment View</h6>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div class="">
-                      <div class="card-body p-3">
-                        <div class="row">
-                          <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                <div className="row">
+                  <div className="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div className="">
+                      <div className="card-body p-3">
+                        <div className="row">
+                          <div className="numbers">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold">
                               Appoinment Details
                             </p>
-                            <div class="table-responsive p-5">
-                              <table class="table align-items-center mb-0 ">
+                            <div className="table-responsive p-5">
+                              <table className="table align-items-center mb-0 ">
                                 <tr>
                                   <td>Date</td>
                                   <td>{date}</td>
@@ -108,7 +108,7 @@ const ViewAppointment = () => {
                                   <td>{status}</td>
                                 </tr>
                                 <tr>
-                                  <td colspan="2">&nbsp;</td>
+                                  <td colspan="2"></td>
                                 </tr>
                               </table>
                             </div>
@@ -118,26 +118,42 @@ const ViewAppointment = () => {
                     </div>
                   </div>
                 </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                  <div class="table-responsive p-3">
-                    <div class="row">
-                      <div class="col-6 d-flex align-items-center">
-                        <h6 class="mb-0">Prodcut Details</h6>
+                <div className="card-body px-0 pt-0 pb-2">
+                  <div className="table-responsive p-3">
+                    <div className="row">
+                      <div className="col-6 d-flex align-items-center">
+                        <h6 className="mb-0">Prodcut Details</h6>
                       </div>
                     </div>
-                    <table class="table align-items-center mb-0">
+                    <table className="table align-items-center mb-0">
                       <thead>
                         <tr>
-                          <th class="text-secondary opacity-7 ps-2">S.No</th>
-                          <th class="text-secondary opacity-7 ps-2">Carrot</th>
-                          <th class="text-secondary opacity-7">Title</th>
-                          <th class="text-secondary opacity-7">Wastage</th>
-                          <th class="text-secondary opacity-7 ps-2">Grams</th>
-                          <th class="text-secondary opacity-7 ps-2"> Making</th>
-                          <th class="text-secondary opacity-7 ps-2"> Price</th>
-                          <th class="text-secondary opacity-7 ps-2">Product</th>
-                          <th class="text-secondary opacity-7 ps-2">Remark</th>
-                          <th class="text-secondary opacity-7 ps-2">Skuid</th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            S.No
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Carrot
+                          </th>
+                          <th className="text-secondary opacity-7">Title</th>
+                          <th className="text-secondary opacity-7">Wastage</th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Grams
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Making
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Price
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Product
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Remark
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Skuid
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -147,81 +163,81 @@ const ViewAppointment = () => {
                               <td>{index + 1}</td>
 
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.carrot}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.title}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.wastage}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.grams}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.making}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.price}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.product}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.remark}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-0 text-sm">
                                       {item.product_id.skuid}
                                     </h6>
                                   </div>
@@ -235,24 +251,24 @@ const ViewAppointment = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Update Status</h6>
+            <div className="col-md-4">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Updated Status</h6>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
                           required=""
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Staff
                         </label>
@@ -269,30 +285,30 @@ const ViewAppointment = () => {
                           ))}
                         </select>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
                           required=""
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Comments
                         </label>
                         <textarea
-                          class="form-control"
+                          className="form-control"
                           name="stsComments"
                           value={comments}
                           onChange={(e) => setComments(e.target.value)}
                         ></textarea>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
                           for="example-text-input"
-                          class="form-control-label"
+                          className="form-control-label"
                         >
                           Status
                         </label>
                         <select
-                          class="form-control"
+                          className="form-control"
                           name="status"
                           value={scheduleStatus}
                           onChange={(e) => setScheduleStatus(e.target.value)}
@@ -308,12 +324,12 @@ const ViewAppointment = () => {
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="button"
-                        class="btn btn-primary btn-sm ms-auto mt-5"
-                        onClick={updateStatus}
+                        className="btn btn-primary btn-sm ms-auto mt-5"
+                        onClick={handleStaffsubmit}
                       >
                         Submit
                       </button>

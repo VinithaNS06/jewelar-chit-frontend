@@ -1,7 +1,7 @@
 import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import config from "../../../config.json";
 import axios from "axios";
 const Appointment = () => {
@@ -19,7 +19,7 @@ const Appointment = () => {
       })
       .then((res) => {
         console.log(res.data);
-        setAppointmentsInfo(res.data.data);
+        setAppointmentsInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -31,112 +31,118 @@ const Appointment = () => {
   }, []);
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
 
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Appointment</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Appointment</h6>
                     </div>
                   </div>
-                  <div class="col-12 text-end">
-                    {/* <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
-                    <a
-                      class="btn bg-gradient-dark mb-0"
+                  <div className="col-12 text-end">
+                    {/* <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
+                    <Link
+                      className="btn bg-gradient-dark mb-0"
                       href="/appointment/add"
                     >
-                      <i class="fas fa-plus" aria-hidden="true"></i>
+                      <i className="fas fa-plus" aria-hidden="true"></i>
                       &nbsp;&nbsp;Add New Appointment
-                    </a>
+                    </Link>
                   </div>
                 </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                  <div class="table-responsive p-5">
-                    <table class="table align-items-center mb-0 ">
+                <div className="card-body px-0 pt-0 pb-2">
+                  <div className="table-responsive p-5">
+                    <table className="table align-items-center mb-0 ">
                       <thead>
                         <tr>
-                          <th class="text-secondary opacity-7 ps-2">S.No</th>
-                          {/* <th class="text-secondary opacity-7 ps-2">Name</th> */}
-                          <th class="text-secondary opacity-7">User Details</th>
-                          <th class="text-secondary opacity-7 ps-2">
+                          <th className="text-secondary opacity-7 ps-2">
+                            S.No
+                          </th>
+                          {/* <th className="text-secondary opacity-7 ps-2">Name</th> */}
+                          <th className="text-secondary opacity-7">
+                            User Details
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
                             Date&Time
                           </th>
-                          <th class="text-secondary opacity-7 ps-2">
+                          <th className="text-secondary opacity-7 ps-2">
                             Products
                           </th>
-                          <th class="text-secondary opacity-7 ps-2">Action</th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Action
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {appointmentsInfo.map((item, index) => (
-                          <tr key={item._id}>
-                            <td>{index + 1}</td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-1 text-sm ">
-                                    {item.user_name}
-                                  </h6>
-                                  <p class="text-xs mb-2">
-                                    Email: {item.user_email}
-                                  </p>
-                                  <p class="text-xs mb-2">
-                                    Mobile:
-                                    <span class="text-secondary">
-                                      {item.user_Phone}
-                                    </span>
-                                  </p>
+                        {appointmentsInfo &&
+                          appointmentsInfo.map((item, index) => (
+                            <tr key={item._id}>
+                              <td>{index + 1}</td>
+                              <td>
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <h6 className="mb-1 text-sm ">
+                                      Name: {item.user_id.name}
+                                    </h6>
+                                    <p className="text-xs mb-2">
+                                      Email: {item.user_id.email}
+                                    </p>
+                                    <p className="text-xs mb-2">
+                                      Mobile:
+                                      <span className="text-secondary">
+                                        {item.user_id.phone}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <p class="text-xs mb-2">
-                                    <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.user_date}
-                                      {"  "}
-                                      {item.user_Time}
-                                    </span>
-                                  </p>
+                              </td>
+                              <td>
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <p className="text-xs mb-2">
+                                      <span className="text-dark font-weight-bold ms-sm-2">
+                                        {item.date}
+                                        {item.time}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
+                              </td>
 
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <p class="text-xs mb-2">
-                                    <span class="text-dark font-weight-bold ms-sm-2">
-                                      {item.user_Products}
-                                    </span>
-                                  </p>
+                              <td>
+                                <div className="d-flex px-2 py-1">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <p className="text-xs mb-2">
+                                      <span className="text-dark font-weight-bold ms-sm-2">
+                                        {item.Products}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="ms-auto">
-                                <a
-                                  href={"/appointment/view/" + item._id}
-                                  class="btn btn-link text-success px-3 mb-0"
-                                >
-                                  <i
-                                    class="fa fa-eye text-success me-2"
-                                    aria-hidden="true"
-                                  ></i>
-                                  View
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
+                              </td>
+                              <td>
+                                <div className="ms-auto">
+                                  <Link
+                                    to={"/appointment/view/" + item._id}
+                                    className="btn btn-link text-success px-3 mb-0"
+                                  >
+                                    <i
+                                      className="fa fa-eye text-success me-2"
+                                      aria-hidden="true"
+                                    ></i>
+                                    View
+                                  </Link>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>

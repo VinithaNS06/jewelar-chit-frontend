@@ -2,7 +2,7 @@ import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
 import config from "../../../config.json";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./category.scss";
 import axios from "axios";
 const Category = () => {
@@ -79,30 +79,34 @@ const Category = () => {
   };
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Category</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Category</h6>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-body px-0 pt-0 pb-2">
-                  <div class="table-responsive p-5">
-                    <table class="table align-items-center mb-0 ">
+                <div className="card-body px-0 pt-0 pb-2">
+                  <div className="table-responsive p-5">
+                    <table className="table align-items-center mb-0 ">
                       <thead>
                         <tr>
-                          <th class="text-secondary opacity-7 ps-2">S.No</th>
-                          <th class="text-secondary opacity-7 ps-2">Name</th>
-                          <th class="text-secondary opacity-7">Action</th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            S.No
+                          </th>
+                          <th className="text-secondary opacity-7 ps-2">
+                            Name
+                          </th>
+                          <th className="text-secondary opacity-7">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -110,34 +114,34 @@ const Category = () => {
                           <tr key={item._id}>
                             <td>{index + 1}</td>
                             <td>
-                              <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">{item.name}</h6>
+                              <div className="d-flex px-2 py-1">
+                                <div className="d-flex flex-column justify-content-center">
+                                  <h6 className="mb-0 text-sm">{item.name}</h6>
                                 </div>
                               </div>
                             </td>
                             <td>
-                              <div class="ms-auto">
-                                <a
-                                  class="btn btn-link text-dark px-3 mb-0"
+                              <div className="ms-auto">
+                                <Link
+                                  className="btn btn-link text-dark px-3 mb-0"
                                   onClick={() => getCategoryedit(item._id)}
                                 >
                                   <i
-                                    class="fas fa-pencil-alt text-dark me-2"
+                                    className="fas fa-pencil-alt text-dark me-2"
                                     aria-hidden="true"
                                   ></i>
                                   Edit
-                                </a>
-                                <a
-                                  class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                </Link>
+                                <Link
+                                  className="btn btn-link text-danger text-gradient px-3 mb-0"
                                   onClick={() => deleteCategory(item._id)}
                                 >
                                   <i
-                                    class="far fa-trash-alt me-2"
+                                    className="far fa-trash-alt me-2"
                                     aria-hidden="true"
                                   ></i>
                                   Delete
-                                </a>
+                                </Link>
                               </div>
                             </td>
                           </tr>
@@ -148,28 +152,28 @@ const Category = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Add/Edit Category</h6>
+            <div className="col-md-4">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Add/Edit Category</h6>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Name
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           placeholder="Enter Category name"
                           required
@@ -179,19 +183,19 @@ const Category = () => {
                           }}
                         />
                         {error && !name && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Category Name
                           </span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="button"
                         onClick={handleCatsubmit}
-                        class="btn btn-primary btn-sm ms-auto mt-5"
+                        className="btn btn-primary btn-sm ms-auto mt-5"
                       >
                         Submit
                       </button>

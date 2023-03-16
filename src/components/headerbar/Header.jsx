@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const Headerbar = () => {
@@ -15,36 +15,36 @@ const Headerbar = () => {
   }, []);
   return (
     <nav
-      class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
+      className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
       id="navbarBlur"
       data-scroll="false"
     >
-      <div class="container-fluid py-1 px-3">
+      <div className="container-fluid py-1 px-3">
         <div
-          class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+          className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
           id="navbar"
         >
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a
-                href="javascript:void(0);"
+          <div className="ms-md-auto pe-md-3 d-flex align-items-center"></div>
+          <ul className="navbar-nav  justify-content-end">
+            <li className="nav-item d-flex align-items-center">
+              <Link
+                to="javascript:void(0);"
                 onClick={logout}
-                class="nav-link text-white font-weight-bold px-0"
+                className="nav-link text-white font-weight-bold px-0"
               >
-                <i class="fa fa-sign-out me-sm-1"></i>
-                <span class="d-sm-inline d-none">Logout</span>
-              </a>
+                <i className="fa fa-sign-out me-sm-1"></i>
+                <span className="d-sm-inline d-none">Logout</span>
+              </Link>
             </li>
-            <li class="nav-item d-flex align-items-center">
-              <a
-                href="javascript:void(0);"
-                class="nav-link text-white font-weight-bold px-0"
+            <li className="nav-item d-flex align-items-center">
+              <Link
+                to="javascript:void(0);"
+                className="nav-link text-white font-weight-bold px-0"
               >
-                <i class="fa fa-bell me-sm-1"></i>
+                <i className="fa fa-bell me-sm-1"></i>
 
-                <span class="d-sm-inline d-none">Notification</span>
-              </a>
+                <span className="d-sm-inline d-none">Notification</span>
+              </Link>
             </li>
           </ul>
         </div>

@@ -96,28 +96,28 @@ const OrderEdit = () => {
 
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Edit Order</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Edit Order</h6>
                     </div>
                   </div>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Customer Details
                         </label>
@@ -137,17 +137,17 @@ const OrderEdit = () => {
                         </select>
 
                         {error && !schemeUserId && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Customer Details
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Product Details
                         </label>
@@ -167,22 +167,22 @@ const OrderEdit = () => {
                         </select>
 
                         {error && !schemeUserId && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the User Details
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Total Amount
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={total_amount}
                           onChange={(e) => {
@@ -190,7 +190,7 @@ const OrderEdit = () => {
                           }}
                         />
                         {error && !total_amount && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Total Amount
                           </span>
                         )}
@@ -198,12 +198,12 @@ const OrderEdit = () => {
                     </div>
                   </div>
                   <ToastContainer />
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="submit"
                         onClick={updateOrder}
-                        class="btn btn-primary btn-sm ms-auto mt-5"
+                        className="btn btn-primary btn-sm ms-auto mt-5"
                       >
                         Submit
                       </button>

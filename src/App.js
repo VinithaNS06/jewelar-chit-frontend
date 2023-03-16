@@ -16,7 +16,7 @@ import Scheme from './components/goldchit/scheme/Scheme';
 import SchemeAdd from './components/goldchit/scheme/addScheme';
 import SchemeEdit from './components/goldchit/scheme/editScheme';
 import UserScheme from './components/goldchit/userScheme/UserScheme';
-import UserSchemeAdd from './components/goldchit/userScheme/adduserScheme';
+// import UserSchemeAdd from './components/goldchit/userScheme/adduserScheme';
 import Rate from './components/goldchit/rate/Rate';
 import RateAdd from './components/goldchit/rate/addrate';
 import RateEdit from './components/goldchit/rate/editrate';
@@ -39,6 +39,13 @@ import ViewUserScheme from './components/goldchit/userScheme/viewUserScheme';
 import PayUserScheme from './components/goldchit/userScheme/payUserScheme';
 import UserSchemeReport from './components/goldchit/report/userSchemeReport/userSchemeReport';
 import OrderReport from './components/goldchit/report/orderReport/OrderReport';
+
+import Setting from './components/goldchit/cmspage/setting/Setting';
+// import AddSetting from './components/goldchit/cmspage/setting/addSetting';
+import EditSetting from './components/goldchit/cmspage/setting/editSetting';
+import Notification from './components/goldchit/cmspage/notification/Notification';
+import BarChart from './pages/barChart/BarChart';
+// import About from './components/goldchit/cmspage/about/About';
 // import Sidebar from './components/jewelar/jewelAR/Sidebar';
 function App() {
   return (
@@ -69,12 +76,11 @@ function App() {
             <Route path="scheme/edit" element={<SchemeEdit/>}/>
             <Route path="scheme/edit/:id" element={<SchemeEdit/>}/>
             <Route path="scheme/view/:viewid" element={<ViewScheme/>}/>
-            <Route path="userscheme" element={<UserScheme/>}/>
-            {/* <Route path="userscheme/add" element={<UserSchemeAdd/>}/> */}
-            <Route path="userscheme/edit" element={<UserSchemeEdit/>}/>
-            <Route path="userscheme/edit/:id" element={<UserSchemeEdit/>}/>
-            <Route path="userscheme/view/:viewid" element={<ViewUserScheme/>}/>
-            <Route path="userscheme/pay/:id" element={<PayUserScheme/>}/>
+            <Route path="userschemes" element={<UserScheme/>}/>
+            <Route path="userschemes/edit" element={<UserSchemeEdit/>}/>
+            <Route path="userschemes/edit/:id" element={<UserSchemeEdit/>}/>
+            <Route path="userschemes/view/:viewid" element={<ViewUserScheme/>}/>
+            <Route path="userschemes/pay/:id" element={<PayUserScheme/>}/>
             <Route path="rate" element={<Rate/>}/>
             <Route path="rate/add" element={<RateAdd/>}/>
             <Route path="rate/edit" element={<RateEdit/>}/>
@@ -93,6 +99,13 @@ function App() {
              <Route path="store" element={<Store />} />
              <Route path="report/userscheme" element={<UserSchemeReport/>}/>
              <Route path="report/orderreport" element={<OrderReport/>}/>
+             <Route path="barchart" element={<BarChart/>}/>
+             <Route path="settings" element={<Setting/>}/>
+             {/* <Route path="settings/add" element={<AddSetting/>}/> */}
+             <Route path="settings/edit" element={<EditSetting/>}/>
+             <Route path="settings/edit/:id" element={<EditSetting/>}/>
+             <Route path="notifications" element={<Notification/>}/>
+             <Route path="barchart" element={<BarChart/>}/>
                 </Route>             
             
         </Routes>

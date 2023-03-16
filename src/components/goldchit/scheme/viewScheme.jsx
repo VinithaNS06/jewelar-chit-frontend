@@ -14,7 +14,6 @@ const ViewScheme = () => {
   const [orederlist, setOrderList] = useState({});
   const [schemeList, setSchemeList] = useState([]);
   const getOrders = async () => {
-    console.log(params);
     let orderresults = await fetch(
       config.apiurl + "api/schemes/" + params.viewid
     );
@@ -25,7 +24,7 @@ const ViewScheme = () => {
   };
   const getUser = async () => {
     let schemedetails = await fetch(
-      config.apiurl + "api/userscheme/users/" + params.viewid,
+      config.apiurl + "api/userscheme/" + params.viewid,
       {
         method: "get",
         headers: {
@@ -38,49 +37,49 @@ const ViewScheme = () => {
     setSchemeList(schemedetails.data);
   };
   useEffect(() => {
-    getOrders();
     getUser();
+    getOrders();
   }, []);
 
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Scheme View</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Scheme View</h6>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="text-end">
+                <div className="row">
+                  <div className="text-end">
                     <Link
                       to="/scheme"
                       type="button"
-                      class="btn btn-primary btn-md ms-auto mt-5"
+                      className="btn btn-primary btn-md ms-auto mt-5"
                     >
                       Back
                     </Link>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-xl-8 col-sm-12 mb-xl-0 mb-4">
-                    <div class="">
-                      <div class="card-body p-3">
-                        <div class="row">
-                          <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                <div className="row">
+                  <div className="col-xl-8 col-sm-12 mb-xl-0 mb-4">
+                    <div className="">
+                      <div className="card-body p-3">
+                        <div className="row">
+                          <div className="numbers">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold">
                               Scheme Details
                             </p>
-                            <div class="table-responsive p-5">
-                              <table class="table align-items-center mb-0 ">
+                            <div className="table-responsive p-5">
+                              <table className="table align-items-center mb-0 ">
                                 <tr>
                                   <td>Scheme Name</td>
                                   <td>
@@ -155,16 +154,16 @@ const ViewScheme = () => {
                     </div>
                   </div>
 
-                  <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div class="">
-                      <div class="card-body p-3">
-                        <div class="row">
-                          <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                  <div className="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div className="">
+                      <div className="card-body p-3">
+                        <div className="row">
+                          <div className="numbers">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold">
                               Scheme Details
                             </p>
-                            <div class="table-responsive p-5">
-                              <table class="table align-items-center mb-0 ">
+                            <div className="table-responsive p-5">
+                              <table className="table align-items-center mb-0 ">
                                 <tr>
                                   <td>Product</td>
                                   <td>{schemeList && schemeList.length}</td>

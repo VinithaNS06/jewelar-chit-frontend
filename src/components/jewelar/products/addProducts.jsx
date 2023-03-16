@@ -97,7 +97,7 @@ const AddProducts = () => {
 
   const handleProsubmit = async () => {
     if (!category_id || !title || !carrot || !wastage || !making || !price) {
-      console.log("asd");
+      // console.log("asd");
       setError(true);
       return false;
     }
@@ -120,59 +120,61 @@ const AddProducts = () => {
   };
   return (
     <>
-      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
       <main className="main-content position-relative border-radius-lg ">
         <Header />
-        <div class="container-fluid py-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="card mb-4">
-                <div class="card-header pb-3">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Add Product</h6>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-12">
+              <div className="card mb-4">
+                <div className="card-header pb-3">
+                  <div className="row">
+                    <div className="col-6 d-flex align-items-center">
+                      <h6 className="mb-0">Add Product</h6>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Category
                         </label>
                         <select
-                          class="form-control"
+                          className="form-control"
                           value={category_id}
                           onChange={(event) => handlecategory(event)}
                         >
                           <option> Choose </option>
                           {categories.map((item, index) => (
-                            <option value={item._id}>{item.name}</option>
+                            <option value={item._id} key={index}>
+                              {item.name}
+                            </option>
                           ))}
                         </select>
                         {error && !category_id && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Choose the Category Name
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Title
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={title}
                           onChange={(e) => {
@@ -180,22 +182,22 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !title && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the product title
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
+                    <div className="col-md-4">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           SKU
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={skuid}
                           onChange={(e) => {
@@ -203,24 +205,24 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !skuid && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the SKU code
                           </span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <div class="form-group">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Carat
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={carrot}
                           onChange={(e) => {
@@ -228,22 +230,22 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !carrot && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Carat value
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
+                    <div className="col-md-3">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Wastage
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={wastage}
                           onChange={(e) => {
@@ -251,22 +253,22 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !wastage && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Carat value
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
+                    <div className="col-md-3">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Making
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={making}
                           onChange={(e) => {
@@ -274,22 +276,22 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !making && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Carat value
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
+                    <div className="col-md-3">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Price
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={price}
                           onChange={(e) => {
@@ -297,46 +299,46 @@ const AddProducts = () => {
                           }}
                         />
                         {error && !price && (
-                          <span class="text-danger text-gradient text-xs text-secondary">
+                          <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Carat value
                           </span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <div class="form-group">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Image
                         </label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="file"
                           onChange={(event) => handleImageupload(event)}
                         />
                       </div>
                     </div>
                     {imagepreview ? (
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         {<img src={imagepreview} width="150" height="150" />}
                       </div>
                     ) : null}
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Description
                         </label>
                         <textarea
-                          class="form-control"
+                          className="form-control"
                           rows="5"
                           value={product}
                           onChange={(e) => {
@@ -345,16 +347,16 @@ const AddProducts = () => {
                         ></textarea>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
+                    <div className="col-md-6">
+                      <div className="form-group">
                         <label
-                          for="example-text-input"
-                          class="form-control-label"
+                          htmlFor="example-text-input"
+                          className="form-control-label"
                         >
                           Remarks
                         </label>
                         <textarea
-                          class="form-control"
+                          className="form-control"
                           rows="5"
                           value={remark}
                           onChange={(e) => {
@@ -364,12 +366,12 @@ const AddProducts = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="text-end">
+                  <div className="row">
+                    <div className="text-end">
                       <button
                         type="submit"
                         onClick={handleProsubmit}
-                        class="btn btn-primary btn-sm ms-auto mt-5"
+                        className="btn btn-primary btn-sm ms-auto mt-5"
                       >
                         Submit
                       </button>
