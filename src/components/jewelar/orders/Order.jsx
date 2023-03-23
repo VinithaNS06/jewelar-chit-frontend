@@ -52,7 +52,6 @@ const Order = () => {
                     </div>
 
                     <div className="col-6 text-end">
-                      {/* <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
                       <Link
                         className="btn bg-gradient-dark mb-0"
                         to="/orders/add"
@@ -72,18 +71,12 @@ const Order = () => {
                           <th className="text-secondary opacity-7 ps-2">
                             S.No
                           </th>
-                          {/* <th className="text-secondary opacity-7 ps-2">
-                            # Order ID
-                          </th> */}
                           <th className="text-secondary opacity-7 ps-2">
                             Customer Details
                           </th>
                           <th className="text-secondary opacity-7 ps-2">
                             Product Details
                           </th>
-                          {/* <th className="text-secondary opacity-7 ps-2">
-                            Total Amount
-                          </th> */}
                           <th className="text-secondary opacity-7 ps-2">
                             Action
                           </th>
@@ -91,38 +84,40 @@ const Order = () => {
                       </thead>
                       <tbody>
                         {orders &&
-                          orders.length &&
                           orders.map((item, index) => (
                             <tr key={item.customer_id}>
                               <td>{index + 1}</td>
-
                               <td>
-                                {/* Phone:{" "}
-                                {item.user_phone} */}
-                                <p className="text-xs mb-2">
-                                  Name: {item.customer_name}
+                                <span>
+                                  <p className="text-xs mb-2">
+                                    Name: {item.customer_name}
+                                  </p>
+                                </span>
+                                <span>
                                   <p className="text-xs mb-2">
                                     Address: {item.customer_address}
                                   </p>
+                                </span>
+                                <span>
                                   <p className="text-xs mb-2">
                                     Mobile: {item.customer_Phone}
                                   </p>
-                                </p>
+                                </span>
                               </td>
+
                               <td>
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
-                                    <p className="text-xs mb-2">
-                                      ProductName:{item.customer_product_title}
-                                    </p>
+                                    <div>
+                                      <p className="text-xs mb-2">
+                                        ProductName:
+                                        {item.customer_product_title}
+                                      </p>
+                                    </div>
                                     <p className="text-xs mb-2">
                                       Product {item.customer_product_product}
                                     </p>
-                                    {/* <p className="text-xs mb-2">
-                                      Image: {item.product_id.image}
-                                    </p> */}
                                   </div>
-
                                   <td>
                                     <div className="d-flex px-2 py-1">
                                       <div>

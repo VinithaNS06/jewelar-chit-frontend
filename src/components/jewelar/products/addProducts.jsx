@@ -28,6 +28,8 @@ const AddProducts = () => {
   const [making, setMaking] = useState("");
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
+  const [total_installment, setTotalInstallment] = useState("");
+  const [secondaryimage, setSecondaryImage] = useState("");
   const [imagepreview, setImagepreview] = useState("");
   const [imagede, setImagede] = useState("");
 
@@ -55,11 +57,13 @@ const AddProducts = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setImage(file.name);
+        setSecondaryImage(file.name);
         setImagepreview(reader.result);
         setImagede(file);
       };
     } else {
       setImage("");
+      setSecondaryImage("");
       setImagepreview("");
       setImagede("");
     }
@@ -118,6 +122,7 @@ const AddProducts = () => {
     const onFailure = (err) => console.log(err);
     axios.post(imageupurl, formData, configimg).then(onSuccess, onFailure);
   };
+
   return (
     <>
       <div className="min-height-300 bg-primary position-absolute w-100"></div>

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
-
+import axios from "axios";
 const UserScheme = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [userschemes, setUserSchemes] = useState([]);
@@ -14,12 +14,20 @@ const UserScheme = () => {
   }, []);
 
   const getSchemes = async () => {
-    let schresult = await fetch(config.apiurl + "api/userschemes/");
-    schresult = await schresult.json();
-    setUserSchemes(schresult.data);
-    console.log(schresult.data);
+    axios
+      .get(config.apiurl + "api/userschemes/getuserscheme", {
+        headers: {
+          Authorization: "Bearer " + accesstoken.data.access_token,
+        },
+      })
+      .then((res) => {
+        console.log(res?.data?.data);
+        setUserSchemes(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
   const deleteSchemes = async (id) => {
     let deletecat = await fetch(config.apiurl + "api/userschemes/" + id, {
       method: "Delete",
@@ -47,17 +55,6 @@ const UserScheme = () => {
                     <div className="col-6 d-flex align-items-center">
                       <h6 className="mb-0">User Schemes</h6>
                     </div>
-
-                    {/* <div className="col-6 text-end">
-                       <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; 
-                      <a
-                        className="btn bg-gradient-dark mb-0"
-                        href="/userscheme/add"
-                      >
-                        <i className="fas fa-plus" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Add New UserScheme
-                      </a>
-                    </div>  */}
                   </div>
                 </div>
 
@@ -72,8 +69,6 @@ const UserScheme = () => {
                           <th className="text-secondary opacity-7 ps-2">
                             Name
                           </th>
-                          {/* <th className="text-secondary opacity-7 ps-2">Phone</th>
-                           */}
                           <th className="text-secondary opacity-7 ps-2">
                             Scheme Name
                           </th>
@@ -102,35 +97,23 @@ const UserScheme = () => {
                       <tbody>
                         {userschemes &&
                           userschemes.map((item, index) => (
-                            <tr key={item._id}>
+                            <tr key={item.id}>
                               <td>{index + 1}</td>
-                              <td>
-                                <div className="d-flex px-2 py-1">
-                                  <div>
-                                    <img
-                                      src={config.apiurl + item.image}
-                                      className="avatar avatar-sm me-3"
-                                      alt={item.title}
-                                    />
-                                  </div>
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <h6 className="mb-1 text-sm ">
-                                      {item.title}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </td>
+
                               <td>
                                 <p className="text-xs mb-2">
-                                  Name: {item.customer_name}
-                                  Address: {item.customer_address}
+                                  Name: {item.user_name}
+                                </p>
+                                <p className="text-xs mb-2">
+                                  Address: {item.user_address}
                                 </p>
                               </td>
+
                               <td>
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_name}
+                                      {item.user_schemename}
                                     </h6>
                                   </div>
                                 </div>
@@ -139,7 +122,7 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_code}
+                                      {item.user_schemecode}
                                     </h6>
                                   </div>
                                 </div>
@@ -148,7 +131,7 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_duration}
+                                      {item.user_scheme_duration}
                                     </h6>
                                   </div>
                                 </div>
@@ -157,7 +140,7 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_installment}
+                                      {item.user_scheme_installment}
                                     </h6>
                                   </div>
                                 </div>
@@ -166,7 +149,7 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_amount}
+                                      {item.amount}
                                     </h6>
                                   </div>
                                 </div>
@@ -175,7 +158,7 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_transaction_id}
+                                      {item.transactionid}
                                     </h6>
                                   </div>
                                 </div>
@@ -184,14 +167,14 @@ const UserScheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_paymentstatus}
+                                      {item.paymentstatus}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <Link
-                                  to={"/userschemes/view/" + item._id}
+                                <a
+                                  href={"/userschemes/view/" + item.user_id}
                                   className="btn btn-link text-success px-3 mb-0"
                                 >
                                   <i
@@ -199,10 +182,10 @@ const UserScheme = () => {
                                     aria-hidden="true"
                                   ></i>
                                   View
-                                </Link>
+                                </a>
 
-                                <Link
-                                  to={"/userschemes/pay/" + item.payment_id}
+                                <a
+                                  href={"/userschemes/pay/" + item.user_id}
                                   className="btn btn-link text-danger text-gradient px-3 mb-0"
                                 >
                                   <i
@@ -210,7 +193,7 @@ const UserScheme = () => {
                                     aria-hidden="true"
                                   ></i>
                                   Pay
-                                </Link>
+                                </a>
                               </td>
                             </tr>
                           ))}

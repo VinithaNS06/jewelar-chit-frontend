@@ -45,7 +45,7 @@ const AddAppointment = () => {
   }
 
   const [userId, setUserId] = useState([]);
-  //   const [productId, setProductId] = useState("");
+
   const [productName, setProductName] = useState("");
   const [schemeUserId, setSchemeUserId] = useState("");
   const [products, setProducts] = useState([]);
@@ -66,7 +66,7 @@ const AddAppointment = () => {
     let prodresult = await fetch(config.apiurl + "api/products/getproduct");
     prodresult = await prodresult.json();
     console.log(prodresult.data);
-    setProducts(prodresult.data.results);
+    setProducts(prodresult.data);
   };
   useEffect(() => {
     getStaffData();

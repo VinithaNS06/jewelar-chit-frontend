@@ -26,11 +26,12 @@ const ViewAppointment = () => {
     updateStatus();
   }, []);
   const getStaffData = async () => {
+    // console.log("1234", staffList);
     let staffList = await fetch(config.apiurl + "api/staff/getstaff", {
       method: "get",
     });
     staffList = await staffList.json();
-    setStaffListInfo(staffList.data.results);
+    setStaffListInfo(staffList?.data?.data);
   };
 
   const handleStaffsubmit = () => {
@@ -59,12 +60,14 @@ const ViewAppointment = () => {
         method: "get",
       }
     );
+    console.log(productList);
     productList = await productList.json();
-    // console.log(productList);
+
     setStatus(productList.data[0].schedule_status);
+    console.log(productList.data[0].schedule_status);
     setDate(productList.data[0].date);
     setTime(productList.data[0].time);
-    setProducts(productList.data);
+    setProducts(productList[0].data);
   };
 
   return (
@@ -158,6 +161,7 @@ const ViewAppointment = () => {
                       </thead>
                       <tbody>
                         {productslist &&
+                          productslist.length &&
                           productslist.map((item, index) => (
                             <tr key={item._id}>
                               <td>{index + 1}</td>
@@ -278,11 +282,13 @@ const ViewAppointment = () => {
                           onChange={(e) => setStaffValue(e.target.value)}
                         >
                           <option>Choose Staff Name</option>
-                          {staffListInfo.map((stf) => (
-                            <option value={stf._id} key={stf._id}>
-                              {stf.name}- {stf.staffid}
-                            </option>
-                          ))}
+                          {staffListInfo &&
+                            staffListInfo.langth &&
+                            staffListInfo.map((stf) => (
+                              <option value={stf._id} key={stf._id}>
+                                {stf.name}- {stf.staffid}
+                              </option>
+                            ))}
                         </select>
                       </div>
                       <div className="form-group">

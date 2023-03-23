@@ -60,13 +60,13 @@ const ViewScheme = () => {
                 </div>
                 <div className="row">
                   <div className="text-end">
-                    <Link
-                      to="/scheme"
+                    <a
+                      href="/scheme"
                       type="button"
                       className="btn btn-primary btn-md ms-auto mt-5"
                     >
                       Back
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 <div className="row">

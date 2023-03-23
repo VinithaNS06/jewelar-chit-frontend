@@ -9,9 +9,11 @@ const Scheme = () => {
   const [schemes, setSchemes] = useState([]);
 
   const navigate = useNavigate();
+
   useEffect(() => {
     getSchemes();
   }, []);
+
   const getSchemes = async () => {
     axios
       .get(config.apiurl + "api/schemes/getscheme", {
@@ -20,13 +22,13 @@ const Scheme = () => {
         },
       })
       .then((res) => {
-        setSchemes(res.data);
+        console.log(res?.data?.data);
+        setSchemes(res?.data?.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
   const deleteSchemes = async (id) => {
     let deletecat = await fetch(config.apiurl + "api/schemes/" + id, {
       method: "Delete",
@@ -56,14 +58,13 @@ const Scheme = () => {
                     </div>
 
                     <div className="col-6 text-end">
-                      {/* <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; */}
-                      <Link
+                      <a
                         className="btn bg-gradient-dark mb-0"
-                        to="/scheme/add"
+                        href="/scheme/add"
                       >
                         <i className="fas fa-plus" aria-hidden="true"></i>
                         &nbsp;&nbsp;Add New Scheme
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -102,23 +103,10 @@ const Scheme = () => {
                       </thead>
                       <tbody>
                         {schemes &&
+                          schemes.length &&
                           schemes.map((item, index) => (
                             <tr key={item._id}>
                               <td>{index + 1}</td>
-                              {/* <td>
-                              <div className="d-flex px-2 py-1">
-                                <div>
-                                  <img
-                                    src={config.apiurl + item.image}
-                                    className="avatar avatar-sm me-3"
-                                    alt={item.title}
-                                  />
-                                </div>
-                                <div className="d-flex flex-column justify-content-center">
-                                  <h6 className="mb-1 text-sm ">{item.title}</h6>
-                                </div>
-                              </div>
-                            </td> */}
                               <td>
                                 <h6 className="mb-0 text-sm">
                                   {item.scheme_name}
@@ -179,8 +167,8 @@ const Scheme = () => {
                                 </div>
                               </td>
                               <td>
-                                <Link
-                                  to={"/scheme/edit/" + item._id}
+                                <a
+                                  href={"/scheme/edit/" + item._id}
                                   className="btn btn-link text-dark px-3 mb-0"
                                 >
                                   <i
@@ -188,9 +176,9 @@ const Scheme = () => {
                                     aria-hidden="true"
                                   ></i>
                                   Edit
-                                </Link>
-                                <Link
-                                  to={"/scheme/view/" + item._id}
+                                </a>
+                                <a
+                                  href={"/scheme/view/" + item._id}
                                   className="btn btn-link text-success px-3 mb-0"
                                 >
                                   <i
@@ -198,8 +186,8 @@ const Scheme = () => {
                                     aria-hidden="true"
                                   ></i>
                                   View
-                                </Link>
-                                <Link
+                                </a>
+                                <a
                                   className="btn btn-link text-danger text-gradient px-3 mb-0"
                                   onClick={() => deleteSchemes(item._id)}
                                 >
@@ -208,7 +196,7 @@ const Scheme = () => {
                                     aria-hidden="true"
                                   ></i>
                                   Delete
-                                </Link>
+                                </a>
                               </td>
                             </tr>
                           ))}
