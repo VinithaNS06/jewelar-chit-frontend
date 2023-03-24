@@ -134,6 +134,20 @@ const Appointment = () => {
                                     </div>
                                   </div>
                                 </td>
+                                {/* <td>
+                                  <div className="ms-auto">
+                                    <a
+                                      href={"/appointment/view/" + item._id}
+                                      className="btn btn-link text-success px-3 mb-0"
+                                    >
+                                      <i
+                                        className="fa fa-eye text-success me-2"
+                                        aria-hidden="true"
+                                      ></i>
+                                      View
+                                    </a>
+                                  </div>
+                                </td> */}
                                 <td>
                                   <div className="ms-auto">
                                     <a

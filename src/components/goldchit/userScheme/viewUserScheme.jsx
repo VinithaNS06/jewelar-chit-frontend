@@ -11,17 +11,24 @@ const ViewUserScheme = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   //  const [schemeList, setSchemeList] = useState({});
   const [schemeList, setSchemeList] = useState([]);
-  const getOrders = async () => {
-    let orderresults = await fetch(
-      config.apiurl + "api/userschemes/" + params.viewid
-    );
 
-    orderresults = await orderresults.json();
-    console.log(orderresults.data[0]);
-    setSchemeList(orderresults.data[0]);
+  const getOrders = async () => {
+    axios
+      .get(config.apiurl + "api/userschemes/" + params.viewid, {
+        headers: {
+          Authorization: "Bearer " + accesstoken.data.access_token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setSchemeList(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   useEffect(() => {
     getOrders();
@@ -214,7 +221,7 @@ const ViewUserScheme = () => {
                                   <td>
                                     {schemeList &&
                                       schemeList._id &&
-                                      schemeList.payment_id.amount}
+                                      schemeList.amount}
                                   </td>
                                 </tr>
 

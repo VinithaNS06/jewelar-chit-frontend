@@ -15,26 +15,32 @@ const ViewScheme = () => {
   const [schemeList, setSchemeList] = useState([]);
   const getOrders = async () => {
     let orderresults = await fetch(
-      config.apiurl + "api/schemes/" + params.viewid
-    );
-
-    orderresults = await orderresults.json();
-    console.log(orderresults.data);
-    setOrderList(orderresults.data[0]);
-  };
-  const getUser = async () => {
-    let schemedetails = await fetch(
-      config.apiurl + "api/userscheme/" + params.viewid,
+      config.apiurl + "api/schemes/" + params.viewid,
       {
         method: "get",
         headers: {
-          Authorization: "bearer " + accesstoken.data.access_token,
+          Authorization: "Bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
+
+    orderresults = await orderresults.json();
+    console.log(orderresults?.data);
+    setOrderList(orderresults?.data);
+  };
+  const getUser = async () => {
+    let schemedetails = await fetch(
+      config.apiurl + "api/userschemes/" + params.viewid,
+      {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + accesstoken.data.access_token,
         },
       }
     );
     schemedetails = await schemedetails.json();
-    console.log(schemedetails.data);
-    setSchemeList(schemedetails.data);
+    console.log(schemedetails?.data);
+    setSchemeList(schemedetails?.data);
   };
   useEffect(() => {
     getUser();
@@ -83,9 +89,7 @@ const ViewScheme = () => {
                                 <tr>
                                   <td>Scheme Name</td>
                                   <td>
-                                    {orederlist &&
-                                      orederlist._id &&
-                                      orederlist.scheme_name}
+                                    {orederlist && orederlist.scheme_name}
                                   </td>
                                 </tr>
                                 <tr>
