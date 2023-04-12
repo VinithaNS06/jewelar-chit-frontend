@@ -14,7 +14,15 @@ const UserSchemeReport = () => {
   }, []);
 
   const getSchemes = async () => {
-    let schresult = await fetch(config.apiurl + "api/userscheme/getuserscheme");
+    let schresult = await fetch(
+      config.apiurl + "api/userschemes/getuserscheme",
+      {
+        method: "Get",
+        headers: {
+          Authorization: "bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
     schresult = await schresult.json();
     setUserSchemes(schresult.data);
     console.log(schresult.data);
@@ -47,17 +55,6 @@ const UserSchemeReport = () => {
                     <div className="col-6 d-flex align-items-center">
                       <h6 className="mb-0">User Schemes</h6>
                     </div>
-
-                    {/* <div className="col-6 text-end">
-                       <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp; 
-                      <a
-                        className="btn bg-gradient-dark mb-0"
-                        href="/userscheme/add"
-                      >
-                        <i className="fas fa-plus" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Add New UserScheme
-                      </a>
-                    </div>  */}
                   </div>
                 </div>
 
@@ -72,27 +69,14 @@ const UserSchemeReport = () => {
                           <th className="text-secondary opacity-7 ps-2">
                             Name
                           </th>
-                          {/* <th className="text-secondary opacity-7 ps-2">Phone</th>
-                           */}
                           <th className="text-secondary opacity-7 ps-2">
-                            Scheme Name
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Scheme Code
+                            Scheme
                           </th>
 
                           <th className="text-secondary opacity-7 ps-2">
-                            Scheme Duration
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Installment
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
                             Amount
                           </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Transaction
-                          </th>
+
                           <th className="text-secondary opacity-7 ps-2">
                             Payment Status
                           </th>
@@ -104,93 +88,41 @@ const UserSchemeReport = () => {
                           userschemes.map((item, index) => (
                             <tr key={item._id}>
                               <td>{index + 1}</td>
-                              {/* <td>
-                              <div className="d-flex px-2 py-1">
-                                <div>
-                                  <img
-                                    src={config.baseurl + item.image}
-                                    className="avatar avatar-sm me-3"
-                                    alt={item.title}
-                                  />
-                                </div>
-                                <div className="d-flex flex-column justify-content-center">
-                                  <h6 className="mb-1 text-sm ">{item.title}</h6>
-                                </div>
-                              </div>
-                            </td> */}
+
                               <td>
-                                {/* Phone:{" "}
-                                {item.user_phone} */}
                                 <p className="text-xs mb-2">
-                                  Name: {item.customer_name} &nbsp; &nbsp;
-                                  Address: {item.customer_address} &nbsp;
+                                  Name: {item.user_name}
                                 </p>
-                                {/* <p className="text-xs mb-2">
-                                Remarks:{" "}
-                                <span className="text-secondary">
-                                  {item.remark}
-                                </span>{" "}
-                              </p> */}
+                                <p className="text-xs mb-2">
+                                  Address: {item.user_address}
+                                </p>
                               </td>
                               <td>
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_name}
+                                      {item.user_schemename}_{" "}
+                                      {item.user_schemecode}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
+
                               <td>
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_code}
+                                      {item.user_scheme_amount}
                                     </h6>
                                   </div>
                                 </div>
                               </td>
+
                               <td>
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_duration}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="d-flex px-2 py-1">
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_installment}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="d-flex px-2 py-1">
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <h6 className="mb-0 text-sm">
-                                      {item.customer_scheme_amount}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="d-flex px-2 py-1">
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <h6 className="mb-0 text-sm">
-                                      {item.customer_transaction_id}
-                                    </h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="d-flex px-2 py-1">
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <h6 className="mb-0 text-sm">
-                                      {item.customer_paymentstatus}
+                                      {item.paymentstatus}
                                     </h6>
                                   </div>
                                 </div>
