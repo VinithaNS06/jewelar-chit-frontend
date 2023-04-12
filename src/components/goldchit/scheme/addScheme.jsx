@@ -44,7 +44,6 @@ const SchemeAdd = () => {
       min_amount,
       max_amount,
       amountstepup,
-      product_status,
     };
     console.log(newProduct);
     fetch(config.apiurl + "api/schemes/createscheme", {

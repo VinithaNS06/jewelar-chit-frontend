@@ -1,34 +1,31 @@
 import config from "../../../config.json";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
-import axios from "axios";
+
 const Scheme = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [schemes, setSchemes] = useState([]);
 
   const navigate = useNavigate();
-
   useEffect(() => {
     getSchemes();
   }, []);
 
   const getSchemes = async () => {
-    axios
-      .get(config.apiurl + "api/schemes/getscheme", {
-        headers: {
-          Authorization: "Bearer " + accesstoken.data.access_token,
-        },
-      })
-      .then((res) => {
-        console.log(res?.data?.data);
-        setSchemes(res?.data?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let schresult = await fetch(config.apiurl + "api/schemes/getscheme", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + accesstoken.data.access_token,
+      },
+    });
+    schresult = await schresult.json();
+    setSchemes(schresult?.data);
+    console.log(schresult?.data);
   };
+
   const deleteSchemes = async (id) => {
     let deletecat = await fetch(config.apiurl + "api/schemes/" + id, {
       method: "Delete",
@@ -74,39 +71,23 @@ const Scheme = () => {
                     <table className="table align-items-center mb-0">
                       <thead>
                         <tr>
-                          <th className="text-secondary opacity-7 ps-2">
-                            S.No
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Scheme Name
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Scheme Code
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Duration
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Installment
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Amount
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Grams
-                          </th>
-                          <th className="text-secondary opacity-7 ps-2">
-                            Rate
-                          </th>
-                          <th className="text-secondary opacity-7">Action</th>
+                          <th className="opacity-7 ps-2">S.No</th>
+                          <th className=" opacity-7 ps-2">Scheme Name</th>
+                          <th className=" opacity-7 ps-2">Scheme Code</th>
+                          <th className=" opacity-7 ps-2">Duration</th>
+                          <th className=" opacity-7 ps-2">Installment</th>
+                          <th className=" opacity-7 ps-2">Amount</th>
+                          <th className=" opacity-7 ps-2">Grams</th>
+                          <th className=" opacity-7 ps-2">Rate</th>
+                          <th className=" opacity-7">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {schemes &&
-                          schemes.length &&
                           schemes.map((item, index) => (
                             <tr key={item._id}>
                               <td>{index + 1}</td>
+
                               <td>
                                 <h6 className="mb-0 text-sm">
                                   {item.scheme_name}
@@ -143,7 +124,7 @@ const Scheme = () => {
                                 <div className="d-flex px-2 py-1">
                                   <div className="d-flex flex-column justify-content-center">
                                     <h6 className="mb-0 text-sm">
-                                      {item.amount}
+                                      {item.max_amount}
                                     </h6>
                                   </div>
                                 </div>
@@ -169,33 +150,30 @@ const Scheme = () => {
                               <td>
                                 <a
                                   href={"/scheme/edit/" + item._id}
-                                  className="btn btn-link text-dark px-3 mb-0"
+                                  className="btn btn-link text-dark px-2 mb-0"
                                 >
                                   <i
                                     className="fas fa-pencil-alt text-dark me-2"
                                     aria-hidden="true"
                                   ></i>
-                                  Edit
                                 </a>
                                 <a
                                   href={"/scheme/view/" + item._id}
-                                  className="btn btn-link text-success px-3 mb-0"
+                                  className="btn btn-link text-success px-2 mb-0"
                                 >
                                   <i
                                     className="fa fa-eye text-success me-2"
                                     aria-hidden="true"
                                   ></i>
-                                  View
                                 </a>
                                 <a
-                                  className="btn btn-link text-danger text-gradient px-3 mb-0"
+                                  className="btn btn-link text-danger text-gradient px-2 mb-0"
                                   onClick={() => deleteSchemes(item._id)}
                                 >
                                   <i
                                     className="far fa-trash-alt me-2"
                                     aria-hidden="true"
                                   ></i>
-                                  Delete
                                 </a>
                               </td>
                             </tr>

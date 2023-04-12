@@ -4,7 +4,7 @@ import config from "../../../config.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./products.scss";
-
+import _ from "lodash";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,11 +13,17 @@ import axios from "axios";
 const AddProducts = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+
   const navigate = useNavigate();
   useEffect(() => {
     getCategory();
   }, []);
-
+  const getCategory = async () => {
+    let catresult = await fetch(config.apiurl + "api/category/getcategory");
+    catresult = await catresult.json();
+    setCategories(catresult.data.results);
+  };
   const [category_id, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [skuid, setSkuid] = useState("");
@@ -28,6 +34,7 @@ const AddProducts = () => {
   const [making, setMaking] = useState("");
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
+  const [categoryid, setSubCategoryId] = useState("");
   const [total_installment, setTotalInstallment] = useState("");
   const [secondaryimage, setSecondaryImage] = useState("");
   const [imagepreview, setImagepreview] = useState("");
@@ -35,15 +42,31 @@ const AddProducts = () => {
 
   const [updateid, setUpdateid] = useState("");
   const [error, setError] = useState(false);
+  const [mainCategoryParam, setMainCategoryParam] = useState("");
 
-  const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "api/category/getcategory");
-    catresult = await catresult.json();
-    setCategories(catresult.data.results);
+  const getSubCategory = async () => {
+    let subcatresult = await fetch(
+      config.apiurl + `api/subcategory/${mainCategoryParam}`,
+      {
+        method: "get",
+        headers: {
+          Authorization: "bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
+    subcatresult = await subcatresult.json();
+    setSubCategories(subcatresult?.data);
   };
+  useEffect(() => {
+    !_.isEmpty(mainCategoryParam) && getSubCategory();
+  }, [mainCategoryParam]);
 
   const handlecategory = async (event) => {
     setCategory(event.target.value);
+    setMainCategoryParam(event?.target?.value);
+  };
+  const handleSubCategory = async (event) => {
+    setSubCategoryId(event.target.vlue);
   };
 
   const handleImageupload = async (event) => {
@@ -57,13 +80,11 @@ const AddProducts = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setImage(file.name);
-        setSecondaryImage(file.name);
         setImagepreview(reader.result);
         setImagede(file);
       };
     } else {
       setImage("");
-      setSecondaryImage("");
       setImagepreview("");
       setImagede("");
     }
@@ -101,7 +122,6 @@ const AddProducts = () => {
 
   const handleProsubmit = async () => {
     if (!category_id || !title || !carrot || !wastage || !making || !price) {
-      // console.log("asd");
       setError(true);
       return false;
     }
@@ -143,7 +163,7 @@ const AddProducts = () => {
 
                 <div className="card-body">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label
                           htmlFor="example-text-input"
@@ -154,13 +174,13 @@ const AddProducts = () => {
                         <select
                           className="form-control"
                           value={category_id}
-                          onChange={(event) => handlecategory(event)}
+                          onChange={(event) => {
+                            handlecategory(event);
+                          }}
                         >
                           <option> Choose </option>
                           {categories.map((item, index) => (
-                            <option value={item._id} key={index}>
-                              {item.name}
-                            </option>
+                            <option value={item._id}>{item.name}</option>
                           ))}
                         </select>
                         {error && !category_id && (
@@ -170,7 +190,33 @@ const AddProducts = () => {
                         )}
                       </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label
+                          htmlFor="example-text-input"
+                          className="form-control-label"
+                        >
+                          Sub Category
+                        </label>
+                        <select
+                          className="form-control"
+                          value={categoryid}
+                          onChange={(event) => handleSubCategory(event)}
+                        >
+                          <option> Choose </option>
+                          {subCategories &&
+                            subCategories.map((item, index) => (
+                              <option value={item._id}>{item.name}</option>
+                            ))}
+                        </select>
+                        {error && !categoryid && (
+                          <span className="text-danger text-gradient text-xs text-secondary">
+                            Choose the Sub Category Name
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label
                           htmlFor="example-text-input"
@@ -193,7 +239,7 @@ const AddProducts = () => {
                         )}
                       </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label
                           htmlFor="example-text-input"
@@ -374,7 +420,7 @@ const AddProducts = () => {
                   <div className="row">
                     <div className="text-end">
                       <button
-                        type="submit"
+                        type="button"
                         onClick={handleProsubmit}
                         className="btn btn-primary btn-sm ms-auto mt-5"
                       >

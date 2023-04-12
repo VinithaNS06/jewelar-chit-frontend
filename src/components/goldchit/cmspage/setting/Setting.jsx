@@ -46,14 +46,6 @@ const Setting = () => {
                     <div className="col-6 d-flex align-items-center">
                       <h6 className="mb-0">Settings</h6>
                     </div>
-
-                    {/* <div className="col-6 text-end">
-                      <AHrefJavascript="javascript:void(0);" className="btn btn-outline-primary btn-sm mb-0 "  >Import</a> &nbsp;&nbsp;
-                      <a className="btn bg-gradient-dark mb-0" href="/settings/add">
-                        <i className="fas fa-plus" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Add New Setting
-                      </a>
-                    </div> */}
                   </div>
                 </div>
 
@@ -68,9 +60,9 @@ const Setting = () => {
                           <th className="text-secondary opacity-7 ps-2">
                             Page Name
                           </th>
-                          <th className="text-secondary opacity-7 ps-2">
+                          {/* <th className="text-secondary opacity-7 ps-2">
                             Description
-                          </th>
+                          </th> */}
 
                           <th className="text-secondary opacity-7">Action</th>
                         </tr>
@@ -88,7 +80,7 @@ const Setting = () => {
                                 </div>
                               </div>
                             </td>
-                            <td>
+                            {/* <td>
                               <div className="row">
                                 <div className="col-md-6">
                                   <div className="form-group">
@@ -98,7 +90,7 @@ const Setting = () => {
                                   </div>
                                 </div>
                               </div>
-                            </td>
+                            </td> */}
 
                             <td>
                               <Link

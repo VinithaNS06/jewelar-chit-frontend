@@ -69,14 +69,14 @@ const UserSchemeEdit = () => {
     ProductDetails = await ProductDetails.json();
     console.log(ProductDetails);
     setUserSchemeName(ProductDetails.data.user_scheme_name);
-    setSchemeProductDesc(ProductDetails.data[0].user_scheme_desc);
-    setSchemeCode(ProductDetails.data[0].scheme_code);
-    setDuration(ProductDetails.data[0].duration);
-    setRate(ProductDetails.data[0].rate);
-    setGrams(ProductDetails.data[0].grams);
-    setInstallMent(ProductDetails.data[0].installment);
-    setMinAmount(ProductDetails.data[0].min_amount);
-    setMaxAmount(ProductDetails.data[0].max_amount);
+    setSchemeProductDesc(ProductDetails.data.user_scheme_desc);
+    setSchemeCode(ProductDetails.data.scheme_code);
+    setDuration(ProductDetails.data.duration);
+    setRate(ProductDetails.data.rate);
+    setGrams(ProductDetails.data.grams);
+    setInstallMent(ProductDetails.data.installment);
+    setMinAmount(ProductDetails.data.min_amount);
+    setMaxAmount(ProductDetails.data.max_amount);
     setStatus(ProductDetails.data[0].status);
   };
 

@@ -96,7 +96,10 @@ const ViewCustomer = () => {
                         <div className="card-body p-3">
                           <div className="row">
                             <div className="numbers">
-                              <p className="text-sm mb-0 text-uppercase font-weight-bold">
+                              <p
+                                className="text-sm mb-0 text-uppercase font-weight-bold"
+                                style={{ marginLeft: "5px" }}
+                              >
                                 Order Details
                               </p>
                               <div className="table-responsive p-5">
@@ -131,7 +134,10 @@ const ViewCustomer = () => {
                       </div>
                     </div>
                     <div className="card-body px-0 pt-0 pb-2">
-                      <p className="text-sm mb-0 text-uppercase font-weight-bold pl-4">
+                      <p
+                        className="text-sm mb-0 text-uppercase font-weight-bold pl-4"
+                        style={{ marginLeft: "35px" }}
+                      >
                         Product Details
                       </p>
                       <div className="table-responsive p-5">
@@ -176,7 +182,10 @@ const ViewCustomer = () => {
                       </div>
                     </div>
                     <div className="card-body px-0 pt-0 pb-2">
-                      <p className="text-sm mb-0 text-uppercase font-weight-bold pl-4">
+                      <p
+                        className="text-sm mb-0 text-uppercase font-weight-bold pl-4"
+                        style={{ marginLeft: "35px" }}
+                      >
                         Scheme Details
                       </p>
                       <div className="table-responsive p-5">

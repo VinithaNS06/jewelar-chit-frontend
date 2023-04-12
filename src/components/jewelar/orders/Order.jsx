@@ -84,23 +84,24 @@ const Order = () => {
                       </thead>
                       <tbody>
                         {orders &&
-                          orders.map((item, index) => (
-                            <tr key={item.customer_id}>
+                          orders.length &&
+                          orders.map((order, index) => (
+                            <tr key={order.customer_id}>
                               <td>{index + 1}</td>
                               <td>
                                 <span>
                                   <p className="text-xs mb-2">
-                                    Name: {item.customer_name}
+                                    Name: {order.customer_name}
                                   </p>
                                 </span>
                                 <span>
                                   <p className="text-xs mb-2">
-                                    Address: {item.customer_address}
+                                    Address: {order.customer_address}
                                   </p>
                                 </span>
                                 <span>
                                   <p className="text-xs mb-2">
-                                    Mobile: {item.customer_Phone}
+                                    Mobile: {order.customer_Phone}
                                   </p>
                                 </span>
                               </td>
@@ -111,11 +112,11 @@ const Order = () => {
                                     <div>
                                       <p className="text-xs mb-2">
                                         ProductName:
-                                        {item.customer_product_title}
+                                        {order.customer_product_title}
                                       </p>
                                     </div>
                                     <p className="text-xs mb-2">
-                                      Product {item.customer_product_product}
+                                      Product: {order.customer_product_product}
                                     </p>
                                   </div>
                                   <td>
@@ -124,10 +125,10 @@ const Order = () => {
                                         <img
                                           src={
                                             config.apiurl +
-                                            item.customer_product_image
+                                            order.customer_product_image
                                           }
                                           className="avatar avatar-sm me-3"
-                                          alt={item.product_id.title}
+                                          alt={order.product_id.title}
                                         />
                                       </div>
                                     </div>
@@ -137,7 +138,7 @@ const Order = () => {
 
                               <td>
                                 <Link
-                                  to={"/orders/edit/" + item._id}
+                                  to={"/orders/edit/" + order._id}
                                   className="btn btn-link text-dark px-3 mb-0"
                                 >
                                   <i
@@ -147,7 +148,7 @@ const Order = () => {
                                   Edit
                                 </Link>
                                 <Link
-                                  to={"/orders/view/" + item._id}
+                                  to={"/orders/view/" + order._id}
                                   className="btn btn-link text-success px-3 mb-0"
                                 >
                                   <i
@@ -158,7 +159,7 @@ const Order = () => {
                                 </Link>
                                 <Link
                                   className="btn btn-link text-danger text-gradient px-3 mb-0"
-                                  onClick={() => deleteOrder(item._id)}
+                                  onClick={() => deleteOrder(order._id)}
                                 >
                                   <i
                                     className="far fa-trash-alt me-2"

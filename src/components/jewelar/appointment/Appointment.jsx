@@ -19,7 +19,7 @@ const Appointment = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res?.data?.data);
         setScheduleinfo(res?.data?.data);
       })
       .catch((err) => {

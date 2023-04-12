@@ -11,7 +11,7 @@ const Home = () => {
         <Header />
         <div className="container-fluid py-4">
           <div className="row">
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div className="col-xl-2 col-sm-6 mb-xl-0 mb-4">
               <div className="card">
                 <div className="card-body p-3">
                   <div className="row">
@@ -133,7 +133,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <BarChart />
+        <div style={{ padding: "65px" }}></div>
+        <div>
+          <BarChart />
+        </div>
       </main>
     </>
   );

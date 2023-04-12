@@ -31,8 +31,8 @@ const ViewAppointment = () => {
       method: "get",
     });
     staffList = await staffList.json();
-    console.log(staffList.data.results);
-    setStaffListInfo(staffList.data.results);
+    console.log(staffList?.data?.results);
+    setStaffListInfo(staffList?.data?.results);
   };
 
   const handleStaffsubmit = () => {
@@ -62,13 +62,12 @@ const ViewAppointment = () => {
       );
 
       console.log(response);
-      const productList = response.data;
-
+      const productList = response?.data;
+      console.log(productList);
       setStatus(productList.data[0].schedule_status);
-      console.log(productList.data[0].schedule_status);
       setDate(productList.data[0].date);
       setTime(productList.data[0].time);
-      setProducts(productList.data[0].products);
+      setProducts(productList.data);
     } catch (error) {
       console.error(error);
     }
@@ -115,7 +114,7 @@ const ViewAppointment = () => {
                                     <td>{status}</td>
                                   </tr>
                                   <tr>
-                                    <td colspan="2"></td>
+                                    <td colSpan="2"></td>
                                   </tr>
                                 </table>
                               </div>
@@ -129,7 +128,9 @@ const ViewAppointment = () => {
                     <div className="table-responsive p-3">
                       <div className="row">
                         <div className="col-6 d-flex align-items-center">
-                          <h6 className="mb-0">Prodcut Details</h6>
+                          <h6 className="text-sm mb-0 text-uppercase font-weight-bold">
+                            Product Details
+                          </h6>
                         </div>
                       </div>
                       <table className="table align-items-center mb-0">
@@ -167,11 +168,9 @@ const ViewAppointment = () => {
                         </thead>
                         <tbody>
                           {productslist &&
-                            productslist.length &&
                             productslist.map((item, index) => (
                               <tr key={item._id}>
                                 <td>{index + 1}</td>
-
                                 <td>
                                   <div className="d-flex px-2 py-1">
                                     <div className="d-flex flex-column justify-content-center">
@@ -181,6 +180,7 @@ const ViewAppointment = () => {
                                     </div>
                                   </div>
                                 </td>
+
                                 <td>
                                   <div className="d-flex px-2 py-1">
                                     <div className="d-flex flex-column justify-content-center">
@@ -190,6 +190,7 @@ const ViewAppointment = () => {
                                     </div>
                                   </div>
                                 </td>
+
                                 <td>
                                   <div className="d-flex px-2 py-1">
                                     <div className="d-flex flex-column justify-content-center">
@@ -276,7 +277,7 @@ const ViewAppointment = () => {
                       <div className="col-md-12">
                         <div className="form-group">
                           <label
-                            for="example-text-input"
+                            htmlFor="example-text-input"
                             required=""
                             className="form-control-label"
                           >
@@ -289,7 +290,7 @@ const ViewAppointment = () => {
                           >
                             <option>Choose Staff Name</option>
                             {staffListInfo &&
-                              staffListInfo.langth &&
+                              staffListInfo.length &&
                               staffListInfo.map((stf) => (
                                 <option key={stf._id} value={stf._id}>
                                   {stf.name}- {stf.staffid}
@@ -299,7 +300,7 @@ const ViewAppointment = () => {
                         </div>
                         <div className="form-group">
                           <label
-                            for="example-text-input"
+                            htmlFor="example-text-input"
                             required=""
                             className="form-control-label"
                           >
@@ -314,7 +315,7 @@ const ViewAppointment = () => {
                         </div>
                         <div className="form-group">
                           <label
-                            for="example-text-input"
+                            htmlFor="example-text-input"
                             className="form-control-label"
                           >
                             Status

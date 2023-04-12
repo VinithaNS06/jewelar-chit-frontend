@@ -1,25 +1,30 @@
-import Sidebar from "../../sidebar/Sidebar";
-import Header from "../../headerbar/Header";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import Header from "../../../components/headerbar/Header";
+import "./subcategory.scss";
 import config from "../../../config.json";
+
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./category.scss";
-import axios from "axios";
-const Category = () => {
+import { useNavigate, useLocation } from "react-router-dom";
+
+const CategorySub = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  let location = useLocation();
+  console.log(location?.pathname?.split("/")?.[3]);
   useEffect(() => {
     getCategory();
-  }, []);
+    // getSubcategory();
+  }, [location?.pathname?.split("/")?.[3]]);
 
   const getCategory = async () => {
-    let catresult = await fetch(config.apiurl + "api/category/getcategory");
+    let catresult = await fetch(config.apiurl + "api/subcategory/");
     catresult = await catresult.json();
     setCategories(catresult.data.results);
   };
 
   const [name, setName] = useState("");
+  const [category_id, setCategoryId] = useState("");
   const [updateid, setUpdateid] = useState("");
   const [error, setError] = useState(false);
 
@@ -31,16 +36,19 @@ const Category = () => {
     let apicaturl = "";
     let methodapi = "";
     if (updateid) {
-      apicaturl = config.apiurl + "api/category/" + updateid;
+      apicaturl = config.apiurl + "api/subcategory/" + updateid;
       methodapi = "put";
     } else {
-      apicaturl = config.apiurl + "api/category/";
+      apicaturl = config.apiurl + "api/subcategory/create";
       methodapi = "post";
     }
 
     let addcat = await fetch(apicaturl, {
       method: methodapi,
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({
+        name,
+        category_id: location?.pathname?.split("/")?.[3],
+      }),
       headers: {
         "Content-Type": "application/json",
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -53,20 +61,23 @@ const Category = () => {
     }
   };
 
-  const getCategoryedit = async (editid) => {
-    let cateditdetails = await fetch(config.apiurl + "api/category/" + editid, {
-      method: "get",
-      headers: {
-        Authorization: "bearer " + accesstoken.data.access_token,
-      },
-    });
-    cateditdetails = await cateditdetails.json();
-    setName(cateditdetails.data[0].name);
-    setUpdateid(cateditdetails.data[0]._id);
+  const getSubcategory = async (editid) => {
+    let subcateditdetails = await fetch(
+      config.apiurl + "api/subcategory/subcat/" + editid,
+      {
+        method: "get",
+        headers: {
+          Authorization: "bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
+    subcateditdetails = await subcateditdetails.json();
+    setName(subcateditdetails?.data[0]?.name);
+    setCategoryId(subcateditdetails?.data[0]?.category_id);
+    setUpdateid(subcateditdetails?.data[0]?._id);
   };
-
   const deleteCategory = async (id) => {
-    let deletecat = await fetch(config.apiurl + "api/category/" + id, {
+    let deletecat = await fetch(config.apiurl + "/subcategory/" + id, {
       method: "Delete",
       headers: {
         Authorization: "bearer " + accesstoken.data.access_token,
@@ -77,6 +88,7 @@ const Category = () => {
       getCategory();
     }
   };
+
   return (
     <>
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -90,7 +102,7 @@ const Category = () => {
                 <div className="card-header pb-3">
                   <div className="row">
                     <div className="col-6 d-flex align-items-center">
-                      <h6 className="mb-0">Category</h6>
+                      <h6 className="mb-0">SubCategory</h6>
                     </div>
                   </div>
                 </div>
@@ -120,29 +132,28 @@ const Category = () => {
                                 </div>
                               </div>
                             </td>
+
                             <td>
-                              <div className="ms-auto">
-                                <Link
-                                  className="btn btn-link text-dark px-3 mb-0"
-                                  onClick={() => getCategoryedit(item._id)}
-                                >
-                                  <i
-                                    className="fas fa-pencil-alt text-dark me-2"
-                                    aria-hidden="true"
-                                  ></i>
-                                  Edit
-                                </Link>
-                                <a
-                                  href={"/subcategory/edit/" + item._id}
-                                  className="btn btn-link text-success px-3 mb-0"
-                                >
-                                  <i
-                                    className="fa fa-list-ul text-success me-2"
-                                    aria-hidden="true"
-                                  ></i>
-                                  Subcategory
-                                </a>
-                              </div>
+                              <a
+                                onClick={() => getSubcategory(item._id)}
+                                className="btn btn-link text-dark px-3 mb-0"
+                              >
+                                <i
+                                  className="fas fa-pencil-alt text-dark me-2"
+                                  aria-hidden="true"
+                                ></i>
+                                Edit
+                              </a>
+                              <a
+                                className="btn btn-link text-danger text-gradient px-3 mb-0"
+                                onClick={() => deleteCategory(item._id)}
+                              >
+                                <i
+                                  className="far fa-trash-alt me-2"
+                                  aria-hidden="true"
+                                ></i>
+                                Delete
+                              </a>
                             </td>
                           </tr>
                         ))}
@@ -157,7 +168,7 @@ const Category = () => {
                 <div className="card-header pb-3">
                   <div className="row">
                     <div className="col-6 d-flex align-items-center">
-                      <h6 className="mb-0">Add/Edit Category</h6>
+                      <h6 className="mb-0">Add/Edit SubCategory</h6>
                     </div>
                   </div>
                 </div>
@@ -211,4 +222,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default CategorySub;

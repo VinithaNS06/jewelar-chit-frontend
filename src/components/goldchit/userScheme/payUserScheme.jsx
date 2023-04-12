@@ -29,14 +29,25 @@ const PayUserScheme = () => {
         payment_status,
       }),
     };
-    fetch(config.apiurl + `api/payments/userschemepay/${params.id}`, headers)
-      .then(() => toast("Payment Updated Sucessfully"))
-      .then(() =>
+
+    try {
+      const response = await fetch(
+        config.apiurl + `api/payments/userschemepay/${params.viewid}`,
+        headers
+      );
+      if (response.ok) {
+        toast("Payment Updated Successfully");
         setTimeout(() => {
           navigate("/userschemes");
-        }, 5000)
-      );
+        }, 5000);
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
+
   const getPaymentView = async () => {
     let PaymentDetails = await fetch(
       config.apiurl + "api/userschemes/getuserscheme",
@@ -48,8 +59,8 @@ const PayUserScheme = () => {
       }
     );
     PaymentDetails = await PaymentDetails.json();
-    console.log(PaymentDetails.data);
-    setPaymentStatus(PaymentDetails.data.payment_status);
+    console.log(PaymentDetails?.data);
+    setPaymentStatus(PaymentDetails?.data.payment_status);
   };
   return (
     <>

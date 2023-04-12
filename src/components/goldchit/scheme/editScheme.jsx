@@ -47,7 +47,7 @@ const SchemeEdit = () => {
         status,
       }),
     };
-    fetch(config.apiurl + `api/schemes/${params.id}`, headers)
+    fetch(config.apiurl + `api/schemes/scheme/${params.id}`, headers)
       .then(() => toast("Scheme Updated Sucessfully"))
       .then(() =>
         setTimeout(() => {
@@ -68,16 +68,16 @@ const SchemeEdit = () => {
     );
     ProductDetails = await ProductDetails.json();
     console.log(ProductDetails);
-    setSchemeName(ProductDetails.data[0].scheme_name);
-    setProductDesc(ProductDetails.data[0].scheme_desc);
-    setSchemeCode(ProductDetails.data[0].scheme_code);
-    setDuration(ProductDetails.data[0].duration);
-    setRate(ProductDetails.data[0].rate);
-    setGrams(ProductDetails.data[0].grams);
-    setInstallMent(ProductDetails.data[0].installment);
-    setMinAmount(ProductDetails.data[0].min_amount);
-    setMaxAmount(ProductDetails.data[0].max_amount);
-    setStatus(ProductDetails.data[0].status);
+    setSchemeName(ProductDetails?.data[0]?.scheme_name);
+    setProductDesc(ProductDetails.data[0]?.scheme_desc);
+    setSchemeCode(ProductDetails.data[0]?.scheme_code);
+    setDuration(ProductDetails.data[0]?.duration);
+    setRate(ProductDetails.data[0]?.rate);
+    setGrams(ProductDetails.data[0]?.grams);
+    setInstallMent(ProductDetails.data[0]?.installment);
+    setMinAmount(ProductDetails.data[0]?.min_amount);
+    setMaxAmount(ProductDetails.data[0]?.max_amount);
+    setStatus(ProductDetails.data[0]?.status);
   };
 
   return (
@@ -110,7 +110,7 @@ const SchemeEdit = () => {
                         <input
                           className="form-control"
                           type="text"
-                          value={scheme_name}
+                          value={scheme_name || ""}
                           onChange={(e) => {
                             setSchemeName(e.target.value);
                           }}

@@ -12,9 +12,30 @@ const ViewUserScheme = () => {
   const navigate = useNavigate();
   const params = useParams();
   // console.log(params);
-  //  const [schemeList, setSchemeList] = useState({});
-  const [schemeList, setSchemeList] = useState([]);
 
+  const [userSchemeList, setUserSchemeList] = useState([]);
+  const [schemeList, setSchemeList] = useState([]);
+  const getSchemelist = async () => {
+    axios
+      .get(
+        config.apiurl +
+          "api/userschemes/" +
+          params.viewid +
+          "/" +
+          params.viewid,
+        {
+          headers: {
+            Authorization: "Bearer " + accesstoken.data.access_token,
+          },
+        }
+      )
+      .then((res) => {
+        setSchemeList(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const getOrders = async () => {
     axios
       .get(config.apiurl + "api/userschemes/" + params.viewid, {
@@ -23,8 +44,8 @@ const ViewUserScheme = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        setSchemeList(res.data.results);
+        setUserSchemeList(res?.data?.data);
+        console.log(res?.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +53,9 @@ const ViewUserScheme = () => {
   };
   useEffect(() => {
     getOrders();
+    getSchemelist();
   }, []);
+
   return (
     <>
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -52,13 +75,13 @@ const ViewUserScheme = () => {
                 </div>
                 <div className="row">
                   <div className="text-end">
-                    <Link
-                      to="/userscheme"
+                    <a
+                      href="/userscheme"
                       type="button"
                       className="btn btn-primary btn-md ms-auto mt-5"
                     >
                       Back
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 <div className="row">
@@ -75,68 +98,89 @@ const ViewUserScheme = () => {
                                 <tr>
                                   <td>Scheme Name</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.scheme_name}
+                                    {userSchemeList?.[0]?.scheme?.scheme_name ||
+                                      ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme?.scheme_name}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Scheme Code</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.scheme_code}
+                                    {userSchemeList?.[0]?.scheme?.scheme_code ||
+                                      ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme?.scheme_code}
                                   </td>
                                 </tr>
 
                                 <tr>
                                   <td>Installment</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.installment}
+                                    {userSchemeList?.[0]?.scheme?.installment ||
+                                      ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme?.installment}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Duration</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.duration}
+                                    {userSchemeList?.[0]?.scheme?.duration ||
+                                      ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme?.duration}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Amount</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.amount}
+                                    {userSchemeList?.[0]?.scheme?.amount || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme?.amount}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Pending Installment</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.pendinginstallment}
+                                    {userSchemeList?.[0]?.scheme
+                                      ?.pendinginstallment || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme
+                                        ?.pendinginstallment}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Paid Installment</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.scheme_id.paidinstallment}
+                                    {userSchemeList?.[0]?.scheme
+                                      ?.paidinstallment || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.scheme
+                                        ?.paidinstallment}
                                   </td>
                                 </tr>
-                                {/* <tr>
-                                  <td>Transaction ID</td>
-                                  <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.payment_id.transaction_id}
-                                  </td>
-                                </tr> */}
                               </table>
                             </div>
                           </div>
@@ -159,34 +203,47 @@ const ViewUserScheme = () => {
                                 <tr>
                                   <td> Name</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.customer_id.name}
+                                    {userSchemeList?.[0]?.user_id?.name || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.user_id?.name}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Phone</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.customer_id.phone}
+                                    {userSchemeList?.[0]?.user_id?.phone || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.user_id?.phone}
                                   </td>
                                 </tr>
 
                                 <tr>
                                   <td>Email</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.customer_id.email}
+                                    {userSchemeList?.[0]?.user_id?.email || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.user_id?.email}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Address</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.customer_id.address}
+                                    {userSchemeList?.[0]?.user_id?.address ||
+                                      ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.user_id?.address}
                                   </td>
                                 </tr>
                               </table>
@@ -211,42 +268,41 @@ const ViewUserScheme = () => {
                                 {/* <tr>
                                   <td> Dleivery Fee</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.payment_id.delivery_fee}
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList.payment_id.delivery_fee}
                                   </td>
                                 </tr> */}
                                 <tr>
                                   <td>Amount</td>
+                                  <td>{userSchemeList?.[0]?.amount || ""}</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.amount}
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.amount}
                                   </td>
                                 </tr>
 
                                 <tr>
-                                  <td>Final Amount</td>
-                                  <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.payment_id.final_amount}
-                                  </td>
-                                </tr>
-                                <tr>
                                   <td>Transaction</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.payment_id.transation_id}
+                                    {userSchemeList?.[0]?.transation_id || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.transation_id}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Payment Status</td>
                                   <td>
-                                    {schemeList &&
-                                      schemeList._id &&
-                                      schemeList.payment_id.payment_status}
+                                    {userSchemeList?.[0]?.payment_status || ""}
+                                  </td>
+                                  <td>
+                                    {userSchemeList &&
+                                      userSchemeList._id &&
+                                      userSchemeList?.[0]?.payment_status}
                                   </td>
                                 </tr>
                               </table>

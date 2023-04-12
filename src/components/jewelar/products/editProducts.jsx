@@ -2,14 +2,16 @@ import Sidebar from "../../sidebar/Sidebar";
 import Header from "../../headerbar/Header";
 import config from "../../../config.json";
 import "./products.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import _ from "lodash";
 import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 
 const Productedit = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
   const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     getCategory();
@@ -29,7 +31,7 @@ const Productedit = () => {
   const [imagepreview, setImagepreview] = useState("");
   const [imagede, setImagede] = useState("");
   const [editimg, setImageedit] = useState("");
-
+  const [categoryid, setSubCategoryId] = useState("");
   const [updateid, setUpdateid] = useState("");
   const [error, setError] = useState(false);
   const params = useParams();
@@ -66,11 +68,32 @@ const Productedit = () => {
       setImagepreview(config.apiurl + "/" + proeditdetails.data[0].image);
     }
   };
+  const [mainCategoryParam, setMainCategoryParam] = useState("");
+
+  const getSubCategory = async () => {
+    let subcatresult = await fetch(
+      config.apiurl + `api/subcategory/${mainCategoryParam}`,
+      {
+        method: "get",
+        headers: {
+          Authorization: "bearer " + accesstoken.data.access_token,
+        },
+      }
+    );
+    subcatresult = await subcatresult.json();
+    setSubCategories(subcatresult?.data);
+  };
+  useEffect(() => {
+    !_.isEmpty(mainCategoryParam) && getSubCategory();
+  }, [mainCategoryParam]);
 
   const handlecategory = async (event) => {
     setCategory(event.target.value);
+    setMainCategoryParam(event?.target?.value);
   };
-
+  const handleSubCategory = async (event) => {
+    setSubCategoryId(event.target.vlue);
+  };
   const handleImageupload = async (event) => {
     const fileup = event.target.files[0];
     Transformfile(fileup);
@@ -169,7 +192,7 @@ const Productedit = () => {
 
                 <div className="card-body">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label
                           htmlFor="example-text-input"
@@ -180,7 +203,9 @@ const Productedit = () => {
                         <select
                           className="form-control"
                           value={category_id}
-                          onChange={(event) => handlecategory(event)}
+                          onChange={(event) => {
+                            handlecategory(event);
+                          }}
                         >
                           <option> Choose </option>
                           {categories.map((item, index) => (
@@ -194,6 +219,33 @@ const Productedit = () => {
                         )}
                       </div>
                     </div>
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label
+                          htmlFor="example-text-input"
+                          className="form-control-label"
+                        >
+                          Sub Category
+                        </label>
+                        <select
+                          className="form-control"
+                          value={categoryid}
+                          onChange={(event) => handleSubCategory(event)}
+                        >
+                          <option> Choose </option>
+                          {subCategories &&
+                            subCategories.map((item, index) => (
+                              <option value={item._id}>{item.name}</option>
+                            ))}
+                        </select>
+                        {error && !categoryid && (
+                          <span className="text-danger text-gradient text-xs text-secondary">
+                            Choose the Sub Category Name
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
                     <div className="col-md-4">
                       <div className="form-group">
                         <label

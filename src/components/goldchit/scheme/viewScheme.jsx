@@ -6,6 +6,9 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import config from "../../../config.json";
 import axios from "axios";
 import Sidebar from "../../../components/sidebar/Sidebar";
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const ViewScheme = () => {
   const accesstoken = JSON.parse(localStorage.getItem("user"));
@@ -19,18 +22,18 @@ const ViewScheme = () => {
       {
         method: "get",
         headers: {
-          Authorization: "Bearer " + accesstoken.data.access_token,
+          Authorization: "bearer " + accesstoken.data.access_token,
         },
       }
     );
 
     orderresults = await orderresults.json();
-    console.log(orderresults?.data);
-    setOrderList(orderresults?.data);
+    console.log(orderresults.data);
+    setOrderList(orderresults?.data[0]);
   };
   const getUser = async () => {
     let schemedetails = await fetch(
-      config.apiurl + "api/userschemes/" + params.viewid,
+      config.apiurl + "api/schemelist/getscheme_byuser/" + params.viewid,
       {
         method: "get",
         headers: {
@@ -66,18 +69,18 @@ const ViewScheme = () => {
                 </div>
                 <div className="row">
                   <div className="text-end">
-                    <a
-                      href="/scheme"
+                    <Link
+                      to="/scheme"
                       type="button"
                       className="btn btn-primary btn-md ms-auto mt-5"
                     >
                       Back
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-xl-8 col-sm-12 mb-xl-0 mb-4">
-                    <div className="">
+                  <div className="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div>
                       <div className="card-body p-3">
                         <div className="row">
                           <div className="numbers">
@@ -85,72 +88,65 @@ const ViewScheme = () => {
                               Scheme Details
                             </p>
                             <div className="table-responsive p-5">
-                              <table className="table align-items-center mb-0 ">
-                                <tr>
-                                  <td>Scheme Name</td>
-                                  <td>
-                                    {orederlist && orederlist.scheme_name}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Scheme Code</td>
-                                  <td>
-                                    {orederlist &&
-                                      orederlist._id &&
-                                      orederlist.scheme_code}
-                                  </td>
-                                </tr>
+                              <div class="card text-center">
+                                <div
+                                  class="card-header"
+                                  // style={{
+                                  //   padding: "30px",
+                                  //   fontWeight: "bold",
+                                  //   color: "black",
+                                  //   backgroundColor: "#e96ee9",
+                                  // }}
+                                >
+                                  {orederlist &&
+                                    orederlist._id &&
+                                    orederlist.scheme_name}{" "}
+                                  _{" "}
+                                  {orederlist &&
+                                    orederlist._id &&
+                                    orederlist.scheme_code}
+                                </div>
 
-                                <tr>
-                                  <td>Description</td>
-                                  <td>
+                                <div
+                                  class="card-body"
+                                  style={{ paddingBottom: "15px" }}
+                                >
+                                  <h5
+                                    class="card-title"
+                                    style={{ fontSize: "15px" }}
+                                  >
                                     {orederlist &&
                                       orederlist._id &&
                                       orederlist.scheme_desc}
-                                  </td>
-                                </tr>
+                                  </h5>
 
-                                <tr>
-                                  <td>Installment</td>
-                                  <td>
+                                  <p
+                                    class="text-primary"
+                                    style={{ fontWeight: "bold" }}
+                                  >
+                                    <button className="btn btn btn-success">
+                                      ₹ :
+                                      {orederlist &&
+                                        orederlist._id &&
+                                        orederlist.amount}
+                                    </button>
+                                  </p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                  <p class="card-text d-flex">
+                                    Installment :
                                     {orederlist &&
                                       orederlist._id &&
                                       orederlist.installment}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Duration</td>
-                                  <td>
+                                  </p>
+                                  <p class="card-text d-flex">
+                                    Duration :
                                     {orederlist &&
                                       orederlist._id &&
                                       orederlist.duration}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Amount</td>
-                                  <td>
-                                    {orederlist &&
-                                      orederlist._id &&
-                                      orederlist.amount}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Pending Installment</td>
-                                  <td>
-                                    {orederlist &&
-                                      orederlist._id &&
-                                      orederlist.pendinginstallment}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Paid Installment</td>
-                                  <td>
-                                    {orederlist &&
-                                      orederlist._id &&
-                                      orederlist.paidinstallment}
-                                  </td>
-                                </tr>
-                              </table>
+                                  </p>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -159,19 +155,62 @@ const ViewScheme = () => {
                   </div>
 
                   <div className="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div className="">
+                    <div>
                       <div className="card-body p-3">
                         <div className="row">
                           <div className="numbers">
                             <p className="text-sm mb-0 text-uppercase font-weight-bold">
-                              Scheme Details
+                              User Details
                             </p>
                             <div className="table-responsive p-5">
-                              <table className="table align-items-center mb-0 ">
-                                <tr>
-                                  <td>Product</td>
-                                  <td>{schemeList && schemeList.length}</td>
-                                </tr>
+                              <table className="table table-borderless  mb-0 ">
+                                <thead className="thead-dark">
+                                  <tr>
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">UserName</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                {schemeList &&
+                                  schemeList.length &&
+                                  schemeList.map((item, index) => (
+                                    <tr>
+                                      <td>
+                                        <tr key={item._id}>
+                                          <td>{index + 1}</td>
+                                        </tr>
+                                      </td>
+
+                                      <td style={{ alignItems: "center" }}>
+                                        <td>{item.user_name}</td>
+                                      </td>
+                                      <td>
+                                        <td>{item.user_address}</td>
+                                      </td>
+                                      <td>
+                                        <td>{item.user_Phone}</td>
+                                      </td>
+                                      <td>
+                                        <td>{item.amount}</td>
+                                      </td>
+                                      <td>
+                                        <a
+                                          href={
+                                            "/userschemes/view/" + item.user_id
+                                          }
+                                          className="btn btn-link text-success px-3 mb-0"
+                                        >
+                                          <i
+                                            className="fa fa-eye text-success me-2"
+                                            aria-hidden="true"
+                                          ></i>
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  ))}
                               </table>
                             </div>
                           </div>
