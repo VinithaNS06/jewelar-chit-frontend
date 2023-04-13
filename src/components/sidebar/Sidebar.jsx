@@ -104,7 +104,7 @@ const Sidebar = () => {
             />
             &nbsp;&nbsp;&nbsp;
             <span className="ms-1 font-weight-bold">
-              Avatar<span className="artextcol">Jewellers</span>
+              Avathar<span className="artextcol">Jewellers</span>
             </span>
           </Link>
         </div>

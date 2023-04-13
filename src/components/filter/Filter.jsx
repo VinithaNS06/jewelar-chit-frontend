@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import config from "../../config.json";
 
 const Filter = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   useEffect(() => {
     fetch(config.apiurl + "api/rates/getrate")
@@ -10,10 +10,10 @@ const Filter = () => {
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
-  //   useEffect(() => {
-  //     const filteredData = data.filter((item) => item.rate > 3);
-  //     setFilteredData(filteredData);
-  //   }, [data]);
+  // useEffect(() => {
+  //   const filteredData = data.map((item) => item.rate);
+  //   setFilteredData(filteredData);
+  // }, [data]);
 
   return (
     <>
@@ -26,7 +26,7 @@ const Filter = () => {
               }}
               type="text"
               className="form-control w-100"
-              placeholder="search products"
+              placeholder="search data"
             />
           </div>
           <div className="col-md-3 w-50">
@@ -35,14 +35,20 @@ const Filter = () => {
               value={filteredData}
               onChange={(e) => setFilteredData(e.target.value)}
             >
-              <option value="all">All</option>
               <option value="products">5d</option>
               <option value="price">15d</option>
               <option value="price">1M-2M</option>
             </select>
           </div>
           <div className="col-md-3 w-50">
-            <button className="btn w-50 mt-2">FILTER</button>
+            <button
+              className="btn w-50 mt-2"
+              onClick={() => {
+                setFilteredData(data);
+              }}
+            >
+              FILTER
+            </button>
           </div>
         </div>
       </div>
