@@ -1,9 +1,10 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/headerbar/Header";
-import "./home.scss";
-import BarChart from "../barChart/BarChart";
-// import LineChart from "../barChart/RateBarChart";
-const Home = () => {
+import "./goldchit.scss";
+import LineChart from "../../pages/barChart/RateBarChart";
+import Filter from "../filter/Filter";
+
+const GoldChit = () => {
   return (
     <>
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -135,15 +136,16 @@ const Home = () => {
           </div>
         </div>
         <div style={{ padding: "70px" }}> </div>
-        <div style={{ padding: "70px" }}>
-          <BarChart />
+        <div>
+          <Filter />
         </div>
-        {/* <div style={{ padding: "70px" }}>
+
+        <div style={{ padding: "70px" }}>
           <LineChart />
-        </div> */}
+        </div>
       </main>
     </>
   );
 };
 
-export default Home;
+export default GoldChit;

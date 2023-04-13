@@ -2,13 +2,32 @@ const list = [
   {
     name: "Dashboard",
 
-    isCollapsible: false,
+    isCollapsible: true,
 
     open: false,
 
-    link: "/dashboard",
-
     active: false,
+    subMenu: [
+      {
+        name: "Jewel AR",
+
+        subLink: "/jewelar",
+
+        count: 0,
+
+        key: "JEWEL AR",
+      },
+
+      {
+        name: "Gold Chit",
+
+        subLink: "/goldchit",
+
+        count: 0,
+
+        key: "GOLD CHIT",
+      },
+    ],
   },
 
   {

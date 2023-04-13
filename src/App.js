@@ -50,6 +50,8 @@ import EditSetting from "./components/goldchit/cmspage/setting/editSetting";
 import Notification from "./components/goldchit/cmspage/notification/Notification";
 import BarChart from "./pages/barChart/BarChart";
 import CategorySub from "./components/jewelar/subcategory/subcategory";
+import JewelAR from "./components/jewel/JewelAR";
+import GoldChit from "./components/chit/GoldChit";
 
 function App() {
   const theme = createTheme();
@@ -63,6 +65,8 @@ function App() {
             <Route element={<PrivateComponent />}>
               {/* <Route path="jewelar" element={<Sidebar/>} />           */}
               <Route path="dashboard" element={<Home />} />
+              <Route path="jewelar" element={<JewelAR />} />
+              <Route path="goldchit" element={<GoldChit />} />
               <Route path="/" element={<Home />} />
               {/* <Route path="jewelar" element={<JewelArDashBoard/>}/> */}
               <Route path="category" element={<Category />} />

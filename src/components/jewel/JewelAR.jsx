@@ -1,9 +1,10 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/headerbar/Header";
-import "./home.scss";
-import BarChart from "../barChart/BarChart";
-// import LineChart from "../barChart/RateBarChart";
-const Home = () => {
+import "./jewelAR.scss";
+import BarChart from "../../pages/barChart/BarChart";
+import Filter from "../filter/Filter";
+
+const JewelAR = () => {
   return (
     <>
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -135,6 +136,7 @@ const Home = () => {
           </div>
         </div>
         <div style={{ padding: "70px" }}> </div>
+
         <div style={{ padding: "70px" }}>
           <BarChart />
         </div>
@@ -146,4 +148,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default JewelAR;

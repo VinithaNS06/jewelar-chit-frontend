@@ -14,6 +14,8 @@ const EditSetting = () => {
   const [Desc, setDesc] = useState("");
   const [customers, setCustomers] = useState([]);
   const [error, setError] = useState("");
+  const [active, setActive] = useState("");
+
   const navigate = useNavigate();
   const params = useParams();
   useEffect(() => {
@@ -134,6 +136,52 @@ const EditSetting = () => {
                         {error && !Desc && (
                           <span className="text-danger text-gradient text-xs text-secondary">
                             Enter the Description
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label
+                        htmlFor="example-text-input"
+                        className="form-control-label"
+                      >
+                        Setting
+                      </label>
+                      <div
+                        className="form-check"
+                        style={{ display: "flex", gap: "30px" }}
+                      >
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          value="yes"
+                          name="active"
+                          onChange={(e) => {
+                            setActive(e.target.value);
+                          }}
+                        />
+                        <label className="form-check-label" htmlFor="yes">
+                          Active
+                        </label>
+                        <br></br>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          value="no"
+                          name="active"
+                          onChange={(e) => {
+                            setActive(e.target.value);
+                          }}
+                        />
+                        <label className="form-check-label" htmlFor="no">
+                          InActive
+                        </label>
+                        <br></br>
+                        {error && !active && (
+                          <span className="text-danger text-gradient text-xs text-secondary">
+                            Enter the Grams
                           </span>
                         )}
                       </div>
